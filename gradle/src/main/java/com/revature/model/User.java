@@ -1,18 +1,29 @@
 package com.revature.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class User {
 
     private int id;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String username;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private String firstName;
     private String lastName;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String userRole;
 
-    public User(){}
+    public User(int id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public User(int id, String username, String password, String firstName, String lastName, String email, String userRole) {
         this.id = id;

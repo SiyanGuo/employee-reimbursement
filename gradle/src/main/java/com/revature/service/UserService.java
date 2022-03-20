@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import com.revature.dao.UserDao;
+import com.revature.dto.UserResponseDTO;
 import com.revature.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -23,7 +24,6 @@ public class UserService {
         } else if (!BCrypt.checkpw(password, user.getPassword())) {
             throw new FailedLoginException("Password is not valid");
         }
-
         return user;
     }
 

@@ -1,6 +1,7 @@
 package com.revature.controller;
 
 import com.revature.dto.LoginDTO;
+import com.revature.dto.UserResponseDTO;
 import com.revature.model.User;
 import com.revature.service.JWTService;
 import com.revature.service.UserService;
@@ -21,7 +22,6 @@ public class AuthenticationController implements Controller {
     }
 
     private Handler login = (ctx) -> {
-        System.out.println("Login endpoint invoked");
 
         LoginDTO loginInfo = ctx.bodyAsClass(LoginDTO.class);
 
@@ -31,7 +31,9 @@ public class AuthenticationController implements Controller {
 
         ctx.header("Access-Control-Expose-Headers", "*");
         ctx.header("Token", jwt);
-        ctx.json(user);
+
+        UserResponseDTO userResponseDTO = new UserResponseDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserRole());
+        ctx.json(userResponseDTO);
     };
 
     @Override

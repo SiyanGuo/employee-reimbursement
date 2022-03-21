@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Employee Reimbursement</title>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Employee Reimbursement</title>
 <!--    <link rel="stylesheet" href="/css/style.css">-->
 </head>
 <body>
@@ -12,11 +13,7 @@
         <h1>
             <a href="/">Employee Reimbursement</a>
         </h1>
-        <div th:each="reimbursement: ${reimbursements}">
-            <p th:text="${reimbursement.type}"></p>
-            <p th:text="${reimbursement.status}"></p>
-            <p th:text="${reimbursement.description}"></p>
-        </div>
+
 <!--        <nav>-->
 <!--            <div th:if="${loggedIn}">-->
 <!--                <a th:href="@{/dashboard}">dashboard</a>-->
@@ -28,9 +25,9 @@
 <!--        </nav>-->
     </header>
 
-<!--    <main layout:fragment="content">-->
-<!--        <p>This is filled by the content template.</p>-->
-<!--    </main>-->
+    <main layout:fragment="content">
+        <p>This is filled by the content template.</p>
+    </main>
 
     <footer>
         Thanks for visiting!

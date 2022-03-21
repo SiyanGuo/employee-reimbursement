@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Homepage</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+    <div th:each="reimbursement: ${reimbursements}">
+        <p th:text="${reimbursement.type}"></p>
+        <p th:text="${reimbursement.status}"></p>
+        <p th:text="${reimbursement.description}"></p>
+    </div>
+</div>
+
+</body>
+</html>

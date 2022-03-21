@@ -39,7 +39,7 @@ public class HomePageController implements Controller{
 
         List<Reimbursement> reimbursements = this.reimbursementService.getAllReimbursements();
         model.put("reimbursements", reimbursements);
-        ctx.render("/templates/layout.html", model);
+        ctx.render("/templates/homepage.html", model);
     };
 
     private Handler homepage = (ctx) ->{

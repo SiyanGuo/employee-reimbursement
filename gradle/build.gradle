@@ -20,6 +20,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
+    implementation group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.15.RELEASE'
+
 }
 
 test {

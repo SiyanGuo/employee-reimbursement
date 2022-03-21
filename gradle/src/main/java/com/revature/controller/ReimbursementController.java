@@ -9,7 +9,11 @@ import io.javalin.http.UnauthorizedResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 
 public class ReimbursementController implements Controller{
@@ -24,17 +28,23 @@ public class ReimbursementController implements Controller{
     }
 
     private Handler getAllReimbursements = (ctx) ->{
+
+        if(ctx.header("Authorization")==null) {
+            throw new UnauthorizedResponse("You must be logged in to access this endpoint");
+        }
         String jwt = ctx.header("Authorization").split(" ")[1];
 
         Jws<Claims> token = this.jwtService.parseJwt(jwt);
+
         if (!token.getBody().get("user_role").equals("Finance Manager")) {
             throw new UnauthorizedResponse("You must be a Finance Manager to access this endpoint");
         }
 
-        List<Reimbursement> assignments = this.reimbursementService.getAllReimbursements();
+        List<Reimbursement> reimbursements = this.reimbursementService.getAllReimbursements();
 
-        ctx.json(assignments);
+        ctx.json(reimbursements);
     };
+
 
 
 

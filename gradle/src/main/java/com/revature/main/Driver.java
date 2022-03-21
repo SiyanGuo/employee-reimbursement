@@ -1,9 +1,6 @@
 package com.revature.main;
 
-import com.revature.controller.AuthenticationController;
-import com.revature.controller.Controller;
-import com.revature.controller.ExceptionController;
-import com.revature.controller.ReimbursementController;
+import com.revature.controller.*;
 import io.javalin.Javalin;
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
@@ -22,7 +19,7 @@ public class Driver {
         app.before((ctx) -> {
             logger.info(ctx.method() + " request received for " + ctx.path());
         });
-        mapControllers(app, new AuthenticationController(), new ReimbursementController(), new ExceptionController());
+        mapControllers(app, new AuthenticationController(), new ReimbursementController(), new ExceptionController(), new HomePageController());
 
         app.start(8081);
     }

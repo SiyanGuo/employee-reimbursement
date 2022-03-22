@@ -6,9 +6,11 @@ import com.revature.service.ReimbursementService;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
 import io.javalin.http.UnauthorizedResponse;
+import io.javalin.http.UploadedFile;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 
+import java.io.InputStream;
 import java.util.List;
 
 
@@ -80,12 +82,21 @@ public class ReimbursementController implements Controller{
         ctx.json(reimbursements);
     };
 
+    private Handler imageUpload = (ctx) ->{
+
+        UploadedFile file = ctx.uploadedFile("image");
+        InputStream fileInputStream = file.getContent();
+        String uploadedFileUrl = this.reimbursementService.uploadToCloudStorage(fileInputStream);
+        ctx.result(uploadedFileUrl);
+    };
+
 
     @Override
     public void mapEndpoints(Javalin app) {
         app.get("/reimbursements", getAllReimbursements); //manager only
         app.patch("/reimbursements/{reimbursement_id}",resolveReimbursement); //manager only
         app.get("/users/{user_id}/reimbursements",getSpecificEmployeeReimbursements); //employee only
+        app.post("/reimbursements/image-upload", imageUpload);
       //  app.post("/api/users/{user_id}/reimbursements", addReimbursement); //employee only
     }
 }

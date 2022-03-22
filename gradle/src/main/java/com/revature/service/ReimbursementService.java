@@ -1,12 +1,19 @@
 package com.revature.service;
 
+import com.google.cloud.storage.*;
 import com.revature.dao.ReimbursementDao;
 import com.revature.exception.EmployeetNotFoundException;
+import com.revature.exception.InvalidImageException;
 import com.revature.exception.ReimbursementNotFoundException;
+import com.revature.exception.UploadFailedException;
 import com.revature.model.Reimbursement;
+import org.apache.tika.Tika;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.UUID;
 
 public class ReimbursementService {
 
@@ -69,4 +76,24 @@ public class ReimbursementService {
 
     }
 
+    public String uploadToCloudStorage(InputStream fileInputStream) throws InvalidImageException, IOException, UploadFailedException {
+        Tika tika = new Tika();
+        String mimeType = tika.detect(fileInputStream);
+        if (!mimeType.equals("image/jpeg") && !mimeType.equals("image/png") && !mimeType.equals("image/gif")) {
+            throw new InvalidImageException("Image must be a JPEG, PNG, or GIF");
+        }
+        String fileName = UUID.randomUUID().toString();
+        String projectId = "global-song-344220";
+        String bucketName = "employee_reimbursement";
+        Storage storage =
+                StorageOptions.newBuilder().setProjectId(projectId).build().getService();
+        BlobId blobId = BlobId.of(bucketName, fileName);
+        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType(mimeType).build();
+        Blob blob = storage.create(blobInfo, fileInputStream);
+       if(blob.getMediaLink()==null){
+           throw new UploadFailedException("Upload failed");
+       }
+        String publicUrl = "https://storage.googleapis.com/employee_reimbursement/"+fileName;
+        return publicUrl;
+    }
 }

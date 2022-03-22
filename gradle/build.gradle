@@ -20,6 +20,9 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
+    implementation platform('com.google.cloud:libraries-bom:25.0.0')
+    implementation 'com.google.cloud:google-cloud-storage'
+    implementation 'org.apache.tika:tika-core:2.3.0'
 }
 
 test {

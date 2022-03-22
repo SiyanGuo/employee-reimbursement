@@ -2,6 +2,7 @@ package com.revature.service;
 
 import com.google.cloud.storage.*;
 import com.revature.dao.ReimbursementDao;
+import com.revature.dto.ReimbursementDTO;
 import com.revature.exception.EmployeetNotFoundException;
 import com.revature.exception.InvalidImageException;
 import com.revature.exception.ReimbursementNotFoundException;
@@ -95,5 +96,19 @@ public class ReimbursementService {
        }
         String publicUrl = "https://storage.googleapis.com/employee_reimbursement/"+fileName;
         return publicUrl;
+    }
+
+    public Reimbursement addReimbursement(ReimbursementDTO reimbursementDTO, String userId) throws SQLException {
+        int employeeId = Integer.parseInt(userId);
+
+        String type = reimbursementDTO.getType();
+        type = type.toUpperCase();
+        if (!type.equals("LODGING") && !type.equals("TRAVEL") && !type.equals("FOOD") && !type.equals("OTHER")  ) {
+            throw new IllegalArgumentException("Valid reimbursement type are LODGING, TRAVEL, FOOD or OTHER. Invalid input: " + type + " was provided");
+        }
+        reimbursementDTO.setType(type);
+        Reimbursement reimbursement = this.reimbursementDao.addReimbursement(reimbursementDTO, employeeId);
+
+       return reimbursement;
     }
 }

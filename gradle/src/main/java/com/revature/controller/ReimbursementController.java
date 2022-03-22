@@ -60,13 +60,32 @@ public class ReimbursementController implements Controller{
         ctx.json(reimbursement);
     };
 
+    private Handler getSpecificEmployeeReimbursements = (ctx) ->  {
+        if(ctx.header("Authorization")==null) {
+            throw new UnauthorizedResponse("You must be logged in to access this endpoint");
+        }
+        String jwt = ctx.header("Authorization").split(" ")[1];
+        Jws<Claims> token = this.jwtService.parseJwt(jwt);
+
+        if (!token.getBody().get("user_role").equals("EMPLOYEE")) {
+            throw new UnauthorizedResponse("You must be an employee to access this endpoint");
+        }
+
+        String userId = ctx.pathParam("user_id");
+        if (!token.getBody().get("user_id").toString().equals(userId)) {
+            throw new UnauthorizedResponse("You cannot obtain assignments that don't belong to yourself");
+        }
+
+        List<Reimbursement> reimbursements = this.reimbursementService.getSpecificEmployeeReimbursements(userId);
+        ctx.json(reimbursements);
+    };
 
 
     @Override
     public void mapEndpoints(Javalin app) {
         app.get("/reimbursements", getAllReimbursements); //manager only
         app.patch("/reimbursements/{reimbursement_id}",resolveReimbursement); //manager only
-      //  app.get("/users/{user_id}/reimbursements",getSpecificEmployeeReimbursements); //employee
-      //  app.post("/api/users/{user_id}/reimbursements", addReimbursement); //employee
+        app.get("/users/{user_id}/reimbursements",getSpecificEmployeeReimbursements); //employee only
+      //  app.post("/api/users/{user_id}/reimbursements", addReimbursement); //employee only
     }
 }

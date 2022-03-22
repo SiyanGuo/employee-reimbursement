@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import com.revature.exception.EmployeetNotFoundException;
 import com.revature.exception.ReimbursementNotFoundException;
 import io.javalin.Javalin;
 import io.javalin.http.ExceptionHandler;
@@ -29,6 +30,11 @@ public class ExceptionController implements Controller {
         ctx.json(exception.getMessage());
     };
 
+    private ExceptionHandler<EmployeetNotFoundException> employeeNotFound = (exception, ctx) -> {
+        logger.warn("Employee not found. Exception message is " + exception.getMessage());
+        ctx.status(404);
+        ctx.json(exception.getMessage());
+    };
 
 
     @Override
@@ -36,5 +42,6 @@ public class ExceptionController implements Controller {
         app.exception(FailedLoginException.class, failedLogin);
         app.exception(IllegalArgumentException.class, invalidArgument);
         app.exception(ReimbursementNotFoundException.class, reimbursementNotFound);
+        app.exception(EmployeetNotFoundException.class, employeeNotFound);
     }
 }

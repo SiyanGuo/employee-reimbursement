@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import com.revature.dao.ReimbursementDao;
+import com.revature.exception.EmployeetNotFoundException;
 import com.revature.exception.ReimbursementNotFoundException;
 import com.revature.model.Reimbursement;
 
@@ -52,5 +53,20 @@ public class ReimbursementService {
 
     }
 
+    public List<Reimbursement> getSpecificEmployeeReimbursements (String userId) throws SQLException, ReimbursementNotFoundException {
+        try {
+            int employeeId = Integer.parseInt(userId);
+            List<Reimbursement> reimbursements;
+            reimbursements = this.reimbursementDao.getSpecificEmployeeReimbursements(employeeId);
+
+            if (reimbursements == null) {
+                throw new ReimbursementNotFoundException("No reimbursements found for employee with id " + employeeId );
+            }
+            return reimbursements;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Employee id must be an int value");
+        }
+
+    }
 
 }

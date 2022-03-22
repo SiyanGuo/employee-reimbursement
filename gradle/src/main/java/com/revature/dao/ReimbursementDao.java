@@ -143,6 +143,57 @@ public class ReimbursementDao {
         return -1;
     }
 
+    public List<Reimbursement> getSpecificEmployeeReimbursements(int employeeId) throws SQLException {
+        try (Connection con = ConnectionUtility.getConnection()) {
+            String sql = "select r.*, u.first_name as author_first, u.last_name as author_last, u2.first_name as resolver_first, u2.last_name as resolver_last\n" +
+                    "from reimbursement_full r " +
+                    "left join users u " +
+                    "on r.author_id = u.id " +
+                    "left join users u2 " +
+                    "on r.resolver_id = u2.id " +
+                    "where r.author_id = ?" +
+                    "order by r.submitted_at desc";
+            List<Reimbursement> reimbursements = new ArrayList<>();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, employeeId);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (!rs.next()) {return null;}
+
+            while (rs.next()) {
+                //author
+                int authorId = rs.getInt("author_id");
+                String authorFName = rs.getString("author_first");
+                String authorLName = rs.getString("author_last");
+
+                User author = new User(authorId, authorFName, authorLName);
+
+                //resolver
+                int resolverId = rs.getInt("resolver_id");
+                String resolverFName = rs.getString("resolver_first");
+                String resolverLName = rs.getString("resolver_last");
+
+                User resolver = new User(resolverId, resolverFName, resolverLName);
+
+                //reimbursement
+                int id = rs.getInt("id");
+                BigDecimal amount = rs.getBigDecimal("amount");
+                String description = rs.getString("description");
+                String type = rs.getString("type");
+                String submittedAt = rs.getString("submitted_at");
+                String status = rs.getString("status");
+                String resolvedAt = rs.getString("resolved_at");
+                String receipt = rs.getString("receipt");
+
+                Reimbursement r = new Reimbursement(id, amount, description, type, submittedAt, status, resolvedAt, receipt, author, resolver);
+
+                reimbursements.add(r);
+            }
+            return reimbursements;
+
+        }
+
+    }
 }
 
 

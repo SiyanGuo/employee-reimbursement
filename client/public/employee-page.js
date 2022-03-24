@@ -11,6 +11,9 @@ logoutBtn.addEventListener('click', () => {
 
 
 window.addEventListener('load', (event) => {
+    if(localStorage.getItem('jwt')==null){
+        window.location = '/public/forbidden.html'
+    }
     populateReimbursements();
 });
 

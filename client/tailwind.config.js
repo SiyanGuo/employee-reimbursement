@@ -1,7 +1,8 @@
 module.exports = {
   content: [
     "./src/**/*.{html,js}",
-    "./public/index.html"
+    "./public/index.html",
+    "./public/**/*.{html,js}"
   ],
   theme: {
     colors:{
@@ -18,7 +19,15 @@ module.exports = {
       body: ['Inter', 'sans-serif'],
       header: ['Crimson Pro', 'serif']
     },
-    extend: {},
+    container:{
+      center:true,
+      padding: "3rem"
+    },
+    extend: {
+      spacing:{
+        '128':'40rem',
+      }
+    },
   },
   plugins: [],
 }

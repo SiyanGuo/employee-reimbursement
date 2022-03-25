@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./output.css">
+    <link rel="icon" href="../src/image/icon copy.png">
+    <title>Employee | Reimee</title>
+
+</head>
+
+<body class="font-body h-screen bg-cool-white">
+
+    <header class="px-10 py-8 bg-purple">
+
+        <div class="text-white flex justify-between">
+
+            <h1 class="font-header text-4xl font-semibold my-5">Welcome back <span id="first-name"></span>!</h1>
+
+            <!-- add a logo at the center -->
+            <div class="hidden md:flex flow-row items-center align-middle gap-4">
+                <a href="./employee-request.html"
+                    class="bg-metal hover:bg-bubble-gum rounded-lg px-4 py-2 drop-shadow-md"> New
+                    Request</a>
+                <button
+                    class="bg-metal hover:bg-tahiti-blue rounded-lg px-4 py-2 drop-shadow-md logout-btn">Logout</button>
+            </div>
+
+            <div class="md:hidden reletive">
+                <!-- mobile button -->
+                <button class="md:hidden absolute top-10 right-10" id="mobile-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+                <!-- mobile menu -->
+                <div class="hidden md:hidden mt-12" id="mobile-menu">
+                    <a href="./employee-request.html" class="py-2 px-4 text-right block request-btn">New Request</a>
+                    <button class="py-2 px-4 text-right block logout-btn">Logout</botton>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+
+    <main class="container mt-6 ">
+
+        <h2 class="font-header text-2xl text-midnight" id="error-msg"> </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="reimbursement-container">
+
+            <!-- RECEIPT CARD -->
+            <!-- <div class="bg-white rounded-lg px-4 py-4 drop-shadow-md">
+                <h2 class="tracking-widest text-tahiti-blue text-xl pb-3 font-semibold">PENDING</h2>
+                <h2 class="tracking-widest text-purple ">Id: 4</h2>
+                <h2 class="tracking-widest text-purple ">Amount: $44</h2>
+                <h2 class="tracking-widest text-purple ">Type: FOOD</h2>
+                <h2 class="tracking-widest text-purple ">Description: Onsite Hotel svery alei sdlfwn sdlfiwencx ld</h2>
+                <h2 class="tracking-widest text-purple ">Submitted at: 2021/09/12</h2>
+                <h2 class="tracking-widest text-purple ">Resolved at: 2021/09/30</h2>
+                <h2 class="tracking-widest text-purple ">Resolved by: Mark Lee</h2>
+                <a href="" class="font-semibold text-purple hover:text-bubble-gum">View Receipt</a>
+            </div> -->
+
+        </div>
+
+
+
+    </main>
+
+    <footer class="fixed bottom-4 w-full flex justify-between items-center">
+        <img src="../src/image/Reimee1.png" class="w-44 ml-10" alt="logo">
+        <h3 class="mr-10 text-midnight">Created by Serena Guo &copy; 2022 </h3>
+    </footer>
+    <script src="employee-home.js"></script>
+</body>
+
+</html>

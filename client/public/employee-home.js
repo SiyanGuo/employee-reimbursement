@@ -2,22 +2,13 @@ let mobileBtn = document.querySelector('#mobile-btn');
 let mobileMenu = document.querySelector('#mobile-menu');
 let logoutBtn = document.querySelector('.logout-btn');
 let reimbursementCtn = document.querySelector('#reimbursement-container')
-
-logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('jwt');
-
-    window.location = '/public/index.html';
-});
+let firstName = document.querySelector('#first-name');
 
 
-window.addEventListener('load', (event) => {
-    if(localStorage.getItem('jwt')==null){
-        window.location = '/public/forbidden.html'
-    }
-    populateReimbursements();
-});
 
 async function populateReimbursements() {
+    
+    firstName.innerText = localStorage.getItem('firstName');
     const URL = `http://localhost:8081/users/${localStorage.getItem('user_id')}/reimbursements`;
 
     let res = await fetch(URL, {
@@ -58,7 +49,8 @@ async function populateReimbursements() {
 
             let submitAt= document.createElement('h2');
             submitAt.classList.add('tracking-widest', 'text-purple');
-            submitAt.innerText = `Submitted at: ${reimbursement.submittedAt}`;
+            let time = new Date(reimbursement.submittedAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
+            submitAt.innerText = `Submitted at: ${time}`;
 
             let resolvedAt= document.createElement('h2');
             resolvedAt.classList.add('tracking-widest', 'text-purple');
@@ -74,15 +66,17 @@ async function populateReimbursements() {
        
             if(reimbursement.status == 'APPROVED'){
                 status.classList.add('text-purple');
-                resolvedAt.innerText = `Resolved at: ${reimbursement.resolvedAt}`
+                let time2 = new Date(reimbursement.resolvedAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
+                resolvedAt.innerText = `Resolved at: ${time2}`
                 resolvedBy.innerText = `Resolved by: ${reimbursement.resolver.firstName} ${reimbursement.resolver.lastName}`
             } else if (reimbursement.status == 'PENDING') {
                 status.classList.add('text-bubble-gum');
-                resolvedAt.innerText = "PENDING";
-                resolvedBy.innerText = "PENDING";
+                resolvedAt.innerText = "Resolved at: PENDING";
+                resolvedBy.innerText = "Resolved by: PENDING";
             } else {
                 status.classList.add('text-tahiti-blue');
-                resolvedAt.innerText = `Resolved at: ${reimbursement.resolvedAt}`
+                let time3 = new Date(reimbursement.resolvedAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) 
+                resolvedAt.innerText = `Resolved at: ${time3}`
                 resolvedBy.innerText = `Resolved by: ${reimbursement.resolver.firstName} ${reimbursement.resolver.lastName}`;
             }
 
@@ -114,4 +108,17 @@ async function populateReimbursements() {
 mobileBtn.addEventListener("click", () => {
     mobileMenu.classList.toggle("hidden");
 })
+
+logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('jwt');
+    window.location = '/public/index.html';
+});
+
+
+window.addEventListener('load', (event) => {
+    if(localStorage.getItem('jwt')==null){
+        window.location = '/public/forbidden.html'
+    }
+    populateReimbursements();
+});
 

@@ -1,4 +1,19 @@
 let loginBtn = document.querySelector('#login-btn');
+let passwordShow = document.querySelector('#togglePassword');
+let passwordInput = document.querySelector('#password');
+
+passwordShow.addEventListener('click', ()=>{
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                passwordShow.classList.remove("fa-eye-slash");
+                passwordShow.classList.add("fa-eye");
+              } else {
+                passwordInput.type = "password";
+                passwordShow.classList.remove("fa-eye");
+                passwordShow.classList.add("fa-eye-slash");
+              }
+});
 
 loginBtn.addEventListener('click', async () => {
     event.preventDefault();
@@ -17,17 +32,21 @@ loginBtn.addEventListener('click', async () => {
         body: jsonString,
     });
 
-    let token = res.headers.get('Token');
-    localStorage.setItem('jwt', token);
+
 
     if (res.status === 200) {
-        let user = await res.json();
 
+        let token = res.headers.get('Token');
+        localStorage.setItem('jwt', token);
+       
+        let user = await res.json();
+        localStorage.setItem('firstName', user.firstName);
         localStorage.setItem('user_id', user.id); 
+
         if (user.userRole === 'EMPLOYEE') {
-            window.location = '/public/employee-page.html';
+            window.location = '/public/employee-home.html';
         } else if (user.userRole === 'MANAGER') {
-            window.location = '/public/manager-page.html';
+            window.location = '/public/manager-home.html';
         }
     } else {
         let errorMsg = await res.text();

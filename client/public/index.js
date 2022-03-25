@@ -40,7 +40,7 @@ loginBtn.addEventListener('click', async () => {
         localStorage.setItem('jwt', token);
        
         let user = await res.json();
-        localStorage.setItem('firstName', user.firstName);
+        localStorage.setItem('first_name', user.firstName);
         localStorage.setItem('user_id', user.id); 
 
         if (user.userRole === 'EMPLOYEE') {

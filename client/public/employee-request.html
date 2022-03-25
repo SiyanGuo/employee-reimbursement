@@ -17,7 +17,7 @@
 
         <div class="text-white flex justify-between">
 
-            <h1 class="font-header text-4xl font-semibold my-5">Welcome back <span>Tiffany</span>!</h1>
+            <h1 class="font-header text-4xl font-semibold my-5">Welcome back <span id="first-name"></span>!</h1>
 
             <!-- add a logo at the center -->
             <div class="hidden md:flex flow-row items-center align-middle gap-4">
@@ -45,6 +45,54 @@
         </div>
     </header>
 
+
+    <main class="container w-full sm:w-2/3 sm:mx-auto xl:w-1/2 m-auto text-midnight">
+    
+        <div class="text-sm sm:text-base font-semibold bg-white py-8 md:py-16 px-12 shadow rounded-lg mt-10">
+            <h1 class="pb-8 text-lg uppercase">Fill out the form to submit a reimbursement request!</h1>
+            <form action="submit" class="center w-full lg:w-3/4 mx-auto flex flex-col gap-5">
+
+                <div class="flex items-center">
+                    <label for="amount" class="text-right mr-8 basis-1/5">Amount:</label>
+                    <input type="text" name="amount" id="amount" class="flex-1 ">
+                </div>
+
+                <div class="flex items-center">
+                    <label for="type" class="text-right mr-8 basis-1/5">Type:</label>
+                    <select name="type" id="type" class="flex-1">
+                    <option selected="true" disabled>Please select</option>
+                    <option value="lodging">Lodging</option>
+                    <option value="travel">Travel</option>
+                    <option value="food">Food</option>
+                    <option value="other">Other</option>
+                </select>
+                </div>
+
+                <div class="flex items-center">
+                <label for="receipt" class="text-right mr-8 basis-1/5">Receipt:  </label>
+                <input type="file" name="receipt" id="receipt" class="flex-1">
+                </div>
+
+                <div class="flex items-center">
+                    <div class="basis-1/5 mr-8"></div>
+                    <button id="receipt-btn" class="m-1 text-sm text-cool-white px-2 py-1 rounded-sm shadow-md bg-metal hover:bg-tahiti-blue
+                    focus:outline-none">Upload</button>
+                    <span id="upload-message" class="my-1 pl-3 text-sm">File Uploaded!</span>
+                </div>
+               
+               
+                <div class="flex items-center">
+                    <label for="description" class="text-right mr-4 sm:mr-8 basis-1/5">Description: <br> <span class="text-xs ">(250 characters maxmium)</span></label>
+                    <textarea type="text" name="description" id="description" class="flex-1"></textarea>
+                </div>
+                
+                <button id="submit-btn" type="submit" class="text-cool-white w-1/3 mx-auto py-2 rounded-md shadow-md bg-metal hover:bg-tahiti-blue
+                focus:outline-none">Submit</button>
+
+            </form>
+
+        </div>
+    </main>
 
     <script src="employee-request.js"></script>
 </body>

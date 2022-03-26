@@ -34,7 +34,6 @@ public class JWTService {
             Jws<Claims> token = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt);
             return token;
         } catch(JwtException e) {
-            e.printStackTrace();
             throw new UnauthorizedResponse("JWT was invalid");
         }
 

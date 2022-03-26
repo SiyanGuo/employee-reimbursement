@@ -81,7 +81,7 @@ public class ReimbursementService {
         Tika tika = new Tika();
         String mimeType = tika.detect(fileInputStream);
         if (!mimeType.equals("image/jpeg") && !mimeType.equals("image/png") && !mimeType.equals("image/gif")) {
-            throw new InvalidImageException("Image must be a JPEG, PNG, or GIF");
+            throw new InvalidImageException("File format: JPEG, PNG, or GIF");
         }
         String fileName = UUID.randomUUID().toString();
         String projectId = "global-song-344220";

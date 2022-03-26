@@ -2,17 +2,17 @@ let loginBtn = document.querySelector('#login-btn');
 let passwordShow = document.querySelector('#togglePassword');
 let passwordInput = document.querySelector('#password');
 
-passwordShow.addEventListener('click', ()=>{
+passwordShow.addEventListener('click', () => {
 
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                passwordShow.classList.remove("fa-eye-slash");
-                passwordShow.classList.add("fa-eye");
-              } else {
-                passwordInput.type = "password";
-                passwordShow.classList.remove("fa-eye");
-                passwordShow.classList.add("fa-eye-slash");
-              }
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        passwordShow.classList.remove("fa-eye-slash");
+        passwordShow.classList.add("fa-eye");
+    } else {
+        passwordInput.type = "password";
+        passwordShow.classList.remove("fa-eye");
+        passwordShow.classList.add("fa-eye-slash");
+    }
 });
 
 loginBtn.addEventListener('click', async () => {
@@ -32,16 +32,14 @@ loginBtn.addEventListener('click', async () => {
         body: jsonString,
     });
 
-
-
-    if (res.status === 200) {
+    if (res.ok) {
 
         let token = res.headers.get('Token');
         localStorage.setItem('jwt', token);
-       
+
         let user = await res.json();
         localStorage.setItem('first_name', user.firstName);
-        localStorage.setItem('user_id', user.id); 
+        localStorage.setItem('user_id', user.id);
 
         if (user.userRole === 'EMPLOYEE') {
             window.location = '/public/employee-home.html';

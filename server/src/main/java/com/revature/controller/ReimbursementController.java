@@ -26,7 +26,7 @@ public class ReimbursementController implements Controller{
         this.reimbursementService = new ReimbursementService();
     }
 
-    private Handler getAllReimbursements = (ctx) ->{
+    private Handler getAllReimbursements = ctx ->{
 
         if(ctx.header("Authorization")==null) {
             throw new UnauthorizedResponse("You must be logged in to access this endpoint");
@@ -43,7 +43,7 @@ public class ReimbursementController implements Controller{
         ctx.json(reimbursements);
     };
 
-    private Handler resolveReimbursement = (ctx) ->{
+    private Handler resolveReimbursement = ctx ->{
         if(ctx.header("Authorization")==null) {
             throw new UnauthorizedResponse("You must be logged in to access this endpoint");
         }
@@ -63,7 +63,7 @@ public class ReimbursementController implements Controller{
         ctx.json(reimbursement);
     };
 
-    private Handler getSpecificEmployeeReimbursements = (ctx) ->  {
+    private Handler getSpecificEmployeeReimbursements = ctx ->  {
         if(ctx.header("Authorization")==null) {
             throw new UnauthorizedResponse("You must be logged in to access this endpoint");
         }
@@ -88,10 +88,12 @@ public class ReimbursementController implements Controller{
         UploadedFile file = ctx.uploadedFile("image");
         InputStream fileInputStream = file.getContent();
         String uploadedFileUrl = this.reimbursementService.uploadToCloudStorage(fileInputStream);
-        ctx.result(uploadedFileUrl);
+        ctx.header("Access-Control-Expose-Headers", "*");
+        ctx.header("Image", uploadedFileUrl);
+        ctx.result("Image uploaded");
     };
 
-    private Handler addReimbursement = (ctx) ->{
+    private Handler addReimbursement = ctx ->{
         if(ctx.header("Authorization")==null) {
             throw new UnauthorizedResponse("You must be logged in to access this endpoint");
         }

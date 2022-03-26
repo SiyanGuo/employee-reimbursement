@@ -23,7 +23,6 @@ public class ReimbursementDao {
                     "on r.resolver_id = u2.id " +
                     "order by r.submitted_at desc";
             PreparedStatement pstmt = con.prepareStatement(sql);
-
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -116,7 +115,6 @@ public class ReimbursementDao {
 
             Reimbursement r = new Reimbursement(id, amount, description, type, submittedAt, status2, resolvedAt, receipt, author, resolver);
 
-
             con.commit();
             return r;
         }
@@ -135,7 +133,6 @@ public class ReimbursementDao {
                 int statusId = rs.getInt("status_id");
                 return statusId;
             }
-
         }
         return -1;
     }
@@ -255,7 +252,6 @@ public class ReimbursementDao {
             return r;
 
         }
-
 
     }
 }

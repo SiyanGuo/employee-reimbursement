@@ -18,7 +18,7 @@ async function populateReimbursements() {
         }
     })
 
-    if (res.status == 200) {
+    if (res.ok) {
 
         let reimbursements = await res.json();
 
@@ -91,9 +91,7 @@ async function populateReimbursements() {
             card.appendChild(receipt);
 
             reimbursementCtn.appendChild(card);
-
         }
-
 
     } else {
         let errorMsg = await res.text();

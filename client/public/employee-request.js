@@ -1,6 +1,5 @@
 let firstName = document.querySelector('#first-name');
 let logoutBtn = document.querySelector('.logout-btn');
-let homeBtn = document.querySelector('.home-btn');
 let uploadBtn = document.querySelector('#upload-btn');
 let receiptFile = document.querySelector('#receipt');
 let uploadMsg = document.querySelector('#upload-message')
@@ -76,11 +75,6 @@ uploadBtn.addEventListener('click', async () => {
         uploadMsg.innerText = errorMsg;
     }
 
-});
-
-
-homeBtn.addEventListener('click', () => {
-    window.location = '/public/employee-home.html';
 });
 
 

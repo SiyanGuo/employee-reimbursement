@@ -852,6 +852,10 @@ select{
   width: 33.333333%;
 }
 
+.w-1\/2{
+  width: 50%;
+}
+
 .w-screen{
   width: 100vw;
 }
@@ -947,8 +951,40 @@ select{
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(120 220 202 / 0));
 }
 
+.from-purple{
+  --tw-gradient-from: #3F3CBB;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(63 60 187 / 0));
+}
+
+.from-tahiti-blue{
+  --tw-gradient-from: #3AB7BF;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(58 183 191 / 0));
+}
+
+.from-bubble-gum{
+  --tw-gradient-from: #FF77E9;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(255 119 233 / 0));
+}
+
+.from-cool-white{
+  --tw-gradient-from: #ECEBFF;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(236 235 255 / 0));
+}
+
 .to-cool-white{
   --tw-gradient-to: #ECEBFF;
+}
+
+.to-midnight{
+  --tw-gradient-to: #121063;
+}
+
+.to-metal{
+  --tw-gradient-to: #565584;
+}
+
+.to-white{
+  --tw-gradient-to: #FFFFFF;
 }
 
 .bg-contain{
@@ -1012,6 +1048,16 @@ select{
 .px-6{
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.py-3{
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .pt-20{
@@ -1143,6 +1189,11 @@ select{
   color: rgb(236 235 255 / var(--tw-text-opacity));
 }
 
+.text-metal{
+  --tw-text-opacity: 1;
+  color: rgb(86 85 132 / var(--tw-text-opacity));
+}
+
 .shadow{
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
@@ -1161,6 +1212,12 @@ select{
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-lg{
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .drop-shadow-sm{
   --tw-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -1168,6 +1225,10 @@ select{
 
 .drop-shadow-md{
   --tw-drop-shadow: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
@@ -1179,6 +1240,16 @@ select{
 .hover\:bg-bubble-gum:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(255 119 233 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-cool-white:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 235 255 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-white:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .hover\:text-bubble-gum:hover{

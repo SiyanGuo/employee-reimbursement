@@ -34,7 +34,7 @@ public class ReimbursementController implements Controller{
         String jwt = ctx.header("Authorization").split(" ")[1];
 
         Jws<Claims> token = this.jwtService.parseJwt(jwt);
-        if (!token.getBody().get("user_role").equals("Finance Manager")) {
+        if (!token.getBody().get("user_role").equals("FINANCE MANAGER")) {
             throw new UnauthorizedResponse("You must be a Finance Manager to access this endpoint");
         }
 

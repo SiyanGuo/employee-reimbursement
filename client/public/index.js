@@ -43,7 +43,7 @@ loginBtn.addEventListener('click', async () => {
 
         if (user.userRole === 'EMPLOYEE') {
             window.location = '/public/employee-home.html';
-        } else if (user.userRole === 'MANAGER') {
+        } else if (user.userRole === 'FINANCE MANAGER') {
             window.location = '/public/manager-home.html';
         }
     } else {

@@ -19,6 +19,7 @@ dependencies {
     implementation 'ch.qos.logback:logback-classic:1.2.11'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testImplementation 'org.mockito:mockito-core:4.3.1'
     implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
     implementation platform('com.google.cloud:libraries-bom:25.0.0')
     implementation 'com.google.cloud:google-cloud-storage'

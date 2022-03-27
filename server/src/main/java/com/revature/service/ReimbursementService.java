@@ -23,6 +23,7 @@ public class ReimbursementService {
     public ReimbursementService(){
         this.reimbursementDao = new ReimbursementDao();
     }
+    public ReimbursementService(ReimbursementDao mockedObject) { this.reimbursementDao = mockedObject;}
 
     public List<Reimbursement> getAllReimbursements() throws SQLException {
         List<Reimbursement> reimbursements;
@@ -38,7 +39,7 @@ public class ReimbursementService {
 
            //validate request param
            if (!status.equals("APPROVED") && !status.equals("DENIED")) {
-               throw new IllegalArgumentException("Choose to approve or deny the reimbursement. Invalid input: " + status + " was provided");
+               throw new IllegalArgumentException("Choose to approve or deny the reimbursement. Invalid input: " + status );
            }
 
            //check if reimbursement exists
@@ -56,7 +57,7 @@ public class ReimbursementService {
            return reimbursement;
 
        } catch (NumberFormatException e) {
-           throw new IllegalArgumentException("Reimbursement id must be an int value");
+           throw new IllegalArgumentException("Reimbursement id must be a valid value");
        }
 
     }
@@ -72,7 +73,7 @@ public class ReimbursementService {
             }
             return reimbursements;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Employee id must be an int value");
+            throw new IllegalArgumentException("Employee id must be a valid value");
         }
 
     }
@@ -104,7 +105,7 @@ public class ReimbursementService {
         String type = reimbursementDTO.getType();
         type = type.toUpperCase();
         if (!type.equals("LODGING") && !type.equals("TRAVEL") && !type.equals("FOOD") && !type.equals("OTHER")  ) {
-            throw new IllegalArgumentException("Valid reimbursement type are LODGING, TRAVEL, FOOD or OTHER. Invalid input: " + type + " was provided");
+            throw new IllegalArgumentException("Valid reimbursement type are LODGING, TRAVEL, FOOD or OTHER. Invalid input: " + type );
         }
         reimbursementDTO.setType(type);
         Reimbursement reimbursement = this.reimbursementDao.addReimbursement(reimbursementDTO, employeeId);

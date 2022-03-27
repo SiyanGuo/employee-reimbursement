@@ -50,14 +50,13 @@ public class ReimbursementController implements Controller{
         String jwt = ctx.header("Authorization").split(" ")[1];
 
         Jws<Claims> token = this.jwtService.parseJwt(jwt);
-        if (!token.getBody().get("user_role").equals("Finance Manager")) {
+        if (!token.getBody().get("user_role").equals("FINANCE MANAGER")) {
             throw new UnauthorizedResponse("You must be a Finance Manager to access this endpoint");
         }
         int trainerId = token.getBody().get("user_id", Integer.class);
         String reimbursementId = ctx.pathParam("reimbursement_id");
 
         String status = ctx.formParam("status");
-        System.out.println("status form param"+status);
         Reimbursement reimbursement = this.reimbursementService.resolveReimbursement(status, trainerId, reimbursementId);
 
         ctx.json(reimbursement);

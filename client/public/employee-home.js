@@ -37,7 +37,7 @@ async function populateReimbursements() {
 
             let amount = document.createElement('h2');
             amount.classList.add('tracking-widest', 'text-purple');
-            amount.innerText = `Amount: ${reimbursement.amount}`;
+            amount.innerText = `Amount: $${reimbursement.amount}`;
 
             let type = document.createElement('h2');
             type.classList.add('tracking-widest', 'text-purple');

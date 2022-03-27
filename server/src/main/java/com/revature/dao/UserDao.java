@@ -17,26 +17,25 @@ public class UserDao {
             String sql = "select * from user_with_user_role " +
                     "where user_with_user_role.username = ? ";
 
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            try( PreparedStatement pstmt = con.prepareStatement(sql);){
+                pstmt.setString(1, username);;
 
-            pstmt.setString(1, username);;
+                ResultSet rs = pstmt.executeQuery();
 
-            ResultSet rs = pstmt.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt("user_id");
+                    String un = rs.getString("username");
+                    String pw = rs.getString("password");
+                    String fName = rs.getString("first_name");
+                    String lName = rs.getString("last_name");
+                    String email = rs.getString("email");
+                    String role = rs.getString("user_role");
 
-            if (rs.next()) {
-                int id = rs.getInt("user_id");
-                String un = rs.getString("username");
-                String pw = rs.getString("password");
-                String fName = rs.getString("first_name");
-                String lName = rs.getString("last_name");
-                String email = rs.getString("email");
-                String role = rs.getString("user_role");
+                    return new User(id, un, pw, fName, lName, email, role);
+                }
 
-                return new User(id, un, pw, fName, lName, email, role);
+                return null;
             }
-
-            return null;
         }
     }
-
 }

@@ -32,34 +32,34 @@ async function populateReimbursements() {
             status.innerText = reimbursement.status;
 
             let id = document.createElement('h2');
-            id.classList.add('tracking-widest', 'text-purple');
+            id.classList.add('tracking-widest', 'pb-3');
             id.innerText = `Id: ${reimbursement.id}`;
 
             let amount = document.createElement('h2');
-            amount.classList.add('tracking-widest', 'text-purple');
+            amount.classList.add('tracking-widest', 'pb-3');
             amount.innerText = `Amount: $${reimbursement.amount}`;
 
             let type = document.createElement('h2');
-            type.classList.add('tracking-widest', 'text-purple');
+            type.classList.add('tracking-widest', 'pb-3');
             type.innerText = `Type: ${reimbursement.type}`;
 
             let description = document.createElement('h2');
-            description.classList.add('tracking-widest', 'text-purple');
+            description.classList.add('tracking-widest', 'pb-3');
             description.innerText = `Description: ${reimbursement.description}`;
 
             let submitAt = document.createElement('h2');
-            submitAt.classList.add('tracking-widest', 'text-purple');
+            submitAt.classList.add('tracking-widest', 'pb-3');
             let time = new Date(reimbursement.submittedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })
             submitAt.innerText = `Submitted at: ${time}`;
 
             let resolvedAt = document.createElement('h2');
-            resolvedAt.classList.add('tracking-widest', 'text-purple');
+            resolvedAt.classList.add('tracking-widest', 'pb-3');
 
             let resolvedBy = document.createElement('h2');
-            resolvedBy.classList.add('tracking-widest', 'text-purple');
+            resolvedBy.classList.add('tracking-widest', 'pb-3');
 
             let receipt = document.createElement('a');
-            receipt.classList.add('font-semibold', 'text-purple', 'hover:text-bubble-gum');
+            receipt.classList.add('font-semibold', 'hover:text-tahiti-blue', 'pb-3');
             receipt.setAttribute('href', `${reimbursement.receipt}`);
             receipt.setAttribute('target', '_blank');
             receipt.innerText = "View Receipt";

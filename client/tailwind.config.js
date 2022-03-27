@@ -20,7 +20,8 @@ module.exports = {
       header: ['Crimson Pro', 'serif']
     },
     container:{
-      center:true
+      center:true,
+      padding:"2.5rem"
     },
     extend: {
       spacing:{

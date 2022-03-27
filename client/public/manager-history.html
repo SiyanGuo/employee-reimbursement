@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./output.css">
+    <link rel="icon" href="../src/image/icon copy.png">
+    <title>Manager | Reimee</title>
+</head>
+
+<body class="font-body h-screen bg-gradient-to-r from-copper-rust to-cool-white">
+
+    <header class="px-10 py-8">
+
+        <div class="flex justify-between">
+            <img src="../src/image/Reimee1.png" class="w-52" alt="logo">
+
+            <div class="hidden md:flex flow-row items-center align-middle gap-4">
+                <a href="./manager-home.html"
+                    class="bg-cool-white hover:bg-white rounded-lg px-4 py-2 drop-shadow-md">
+                    Home</a>
+                <button
+                    class="bg-cool-white hover:bg-white rounded-lg px-4 py-2 drop-shadow-md logout-btn">Logout</button>
+            </div>
+
+            <div class="md:hidden reletive">
+                <!-- mobile button -->
+                <button class="md:hidden absolute top-10 right-10" id="mobile-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+                <!-- mobile menu -->
+                <div class="hidden md:hidden mt-12" id="mobile-menu">
+                    <a href="./manager-home.html" class="py-2 px-4 text-right block request-btn">Home</a>
+                    <button class="py-2 px-4 text-right block logout-btn">Logout</botton>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <main class="container mt-6 pb-20">
+        <h1 class="font-header text-3xl font-semibold mt-5 mb-10 ml-2 text-midnight">You have <span
+                id="num-of-requests"></span> resolved request(s):</h1>
+        <h2 class="font-header text-2xl text-midnight mb-10" id="error-msg"> </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="reimbursement-container">
+
+            <!-- RECEIPT CARD -->
+            <!-- <div class="bg-white rounded-lg px-4 py-4 shadow-lg">
+                <h2 class="tracking-widest pb-3 text-bubble-gum text-xl font-semibold">PENDING</h2>
+                <h2 class="tracking-widest pb-3 ">Id: 4</h2>
+                <h2 class="tracking-widest pb-3 ">Amount: $44</h2>
+                <h2 class="tracking-widest pb-3">Type: FOOD</h2>
+                <h2 class="tracking-widest pb-3">Description: Onsite Hotel svery alei sdlfwn sdlfiwencx ld</h2>
+                <h2 class="tracking-widest pb-3 ">Submitted by: Charles Kaur</h2>
+                <h2 class="tracking-widest pb-3 ">Submitted at: 2021/09/12</h2>
+                <a href="" class="font-semibold pb-3 hover:text-tahiti-blue">View Receipt</a>
+                <div class="flex justify-around mt-5 pb-8">
+                    <button id="approve" data-id="4"
+                        class="px-4 py-1 border-cool-white border-2 hover:bg-cool-white rounded">Approve</button>
+                    <button id="deny" data-id="4"
+                        class="px-4 py-1 border-cool-white border-2 hover:bg-cool-white rounded">Deny</button>
+                </div>
+                <span class="font-semibold text-bubble-gum">Thank you! The request has been resolved.</span>
+            </div> -->
+            <!--to be appended -->
+        </div>
+
+    </main>
+
+    <script src="manager-history.js"></script>
+</body>
+
+</html>

@@ -11,20 +11,19 @@
 
 </head>
 
-<body class="font-body h-screen">
+<body class="font-body h-screen bg-gradient-to-r to-cool-white from-copper-rust">
 
-    <header class="px-10 py-3 bg-purple">
+    <header class="px-10 py-8">
 
-        <div class="text-white flex justify-between">
-
-            <h1 class="font-header text-4xl font-semibold my-5">Welcome back <span id="first-name"></span>!</h1>
+        <div class="flex justify-between">
+            <img src="../src/image/Reimee1.png" class="w-52" alt="logo">
 
             <div class="hidden md:flex flow-row items-center align-middle gap-4">
                 <a href="./employee-request.html"
-                    class="bg-metal hover:bg-tahiti-blue rounded-lg px-4 py-2 drop-shadow-md"> New
+                    class="hover:bg-white bg-cool-white rounded-lg px-4 py-2 drop-shadow-md"> New
                     Request</a>
                 <button
-                    class="bg-metal hover:bg-tahiti-blue rounded-lg px-4 py-2 drop-shadow-md logout-btn">Logout</button>
+                    class="hover:bg-white bg-cool-white rounded-lg px-4 py-2 drop-shadow-md logout-btn">Logout</button>
             </div>
 
             <div class="md:hidden reletive">
@@ -45,33 +44,29 @@
         </div>
     </header>
 
-
-    <main class="container mt-6 ">
-
+    <main class="container mt-6 pb-20">
+        <h1 class="font-header text-3xl font-semibold mt-5 mb-10 ml-2 text-midnight">Welcome back <span
+                id="first-name"></span>!</h1>
         <h2 class="font-header text-2xl text-midnight" id="error-msg"> </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="reimbursement-container">
 
             <!-- RECEIPT CARD -->
-            <div class="bg-white rounded-lg px-4 py-4 shadow-lg">
-                <h2 class="tracking-widest text-tahiti-blue text-xl pb-3 font-semibold">PENDING</h2>
-                <h2 class="tracking-widest text-purple ">Id: 4</h2>
-                <h2 class="tracking-widest text-purple ">Amount: $44</h2>
-                <h2 class="tracking-widest text-purple ">Type: FOOD</h2>
-                <h2 class="tracking-widest text-purple ">Description: Onsite Hotel svery alei sdlfwn sdlfiwencx ld</h2>
-                <h2 class="tracking-widest text-purple ">Submitted at: 2021/09/12</h2>
-                <h2 class="tracking-widest text-purple ">Resolved at: 2021/09/30</h2>
-                <h2 class="tracking-widest text-purple ">Resolved by: Mark Lee</h2>
-                <a href="" class="font-semibold text-purple hover:text-bubble-gum">View Receipt</a>
-            </div>
-
+            <!-- <div class="bg-white rounded-lg px-4 py-4 shadow-lg">
+                <h2 class="tracking-widest text-bubble-gum text-xl pb-3 font-semibold">PENDING</h2>
+                <h2 class="tracking-widest  pb-3">Id: 4</h2>
+                <h2 class="tracking-widest  pb-3">Amount: $44</h2>
+                <h2 class="tracking-widest  pb-3">Type: FOOD</h2>
+                <h2 class="tracking-widest  pb-3">Description: Onsite Hotel svery alei sdlfwn sdlfiwencx ld</h2>
+                <h2 class="tracking-widest  pb-3">Submitted at: 2021/09/12</h2>
+                <h2 class="tracking-widest  pb-3">Resolved at: 2021/09/30</h2>
+                <h2 class="tracking-widest  pb-3">Resolved by: Mark Lee</h2>
+                <a href="" class="font-semibold  hover:text-tahiti-blue pb-3">View Receipt</a>
+            </div> -->
+            <!--to be appended -->
         </div>
 
     </main>
 
-    <footer class="fixed bottom-4 w-full flex justify-between items-center">
-        <img src="../src/image/Reimee1.png" class="w-44 ml-10" alt="logo">
-        <h3 class="mr-10 text-midnight">Created by Serena Guo &copy; 2022 </h3>
-    </footer>
     <script src="employee-home.js"></script>
 </body>
 

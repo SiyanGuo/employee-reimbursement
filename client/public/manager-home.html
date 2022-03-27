@@ -12,13 +12,11 @@
 
 <body class="font-body h-screen bg-gradient-to-r from-copper-rust to-cool-white">
 
-    <header class="px-10 py-3">
+    <header class="px-10 py-8">
 
         <div class="flex justify-between">
+            <img src="../src/image/Reimee1.png" class="w-52" alt="logo">
 
-            <h1 class="font-header text-4xl font-semibold my-5">Welcome back <span id="first-name"></span>!</h1>
-
-            <!-- add a logo at the center -->
             <div class="hidden md:flex flow-row items-center align-middle gap-4">
                 <a href="./manager-history.html"
                     class="bg-cool-white hover:bg-white rounded-lg px-4 py-2 drop-shadow-md">
@@ -46,8 +44,9 @@
         </div>
     </header>
 
-    <main class="container mt-6 ">
-
+    <main class="container mt-6 pb-20">
+        <h1 class="font-header text-3xl font-semibold mt-5 mb-10 ml-2 text-midnight">Welcome back <span
+                id="first-name"></span>! You have <span id="num-ofunresolved"></span> unresolved request(s):</h1>
         <h2 class="font-header text-2xl text-midnight mb-10" id="error-msg"> </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="reimbursement-container">
 
@@ -62,8 +61,10 @@
                 <h2 class="tracking-widest pb-3 ">Submitted at: 2021/09/12</h2>
                 <a href="" class="font-semibold pb-3 hover:text-tahiti-blue">View Receipt</a>
                 <div class="flex justify-around mt-5 pb-8">
-                    <button id="approve" data-id="4" class="px-4 py-1 border-cool-white border-2 hover:bg-cool-white rounded">Approve</button>
-                    <button id="deny" data-id="4" class="px-4 py-1 border-cool-white border-2 hover:bg-cool-white rounded">Deny</button>
+                    <button id="approve" data-id="4"
+                        class="px-4 py-1 border-cool-white border-2 hover:bg-cool-white rounded">Approve</button>
+                    <button id="deny" data-id="4"
+                        class="px-4 py-1 border-cool-white border-2 hover:bg-cool-white rounded">Deny</button>
                 </div>
                 <span class="font-semibold text-bubble-gum">Thank you! The request has been resolved.</span>
             </div> -->
@@ -72,12 +73,6 @@
 
     </main>
 
-
-
-    <footer class="fixed bottom-4 w-full flex justify-between items-center">
-        <img src="../src/image/Reimee1.png" class="w-44 ml-10" alt="logo">
-        <h3 class="mr-10 text-midnight">Created by Serena Guo &copy; 2022 </h3>
-    </footer>
 
     <script src="manager-home.js"></script>
 </body>

@@ -11,21 +11,20 @@
 </head>
 
 
-<body class="font-body h-screen">
+<body class="font-body h-screen bg-gradient-to-r to-cool-white from-copper-rust">
 
-    <header class="px-10 py-3 bg-purple">
+    <header class="px-10 py-8">
 
-        <div class="text-white flex justify-between">
+        <div class="flex justify-between">
 
-            <h1 class="font-header text-4xl font-semibold my-5">Welcome back <span id="first-name"></span>!</h1>
+            <img src="../src/image/Reimee1.png" class="w-52" alt="logo">
 
-            <!-- add a logo at the center -->
             <div class="hidden md:flex flow-row items-center align-middle gap-4">
                 <a href="./employee-home.html"
-                    class="bg-metal hover:bg-tahiti-blue rounded-lg px-4 py-2 drop-shadow-md"> Home
+                    class="bg-cool-white hover:bg-white rounded-lg px-4 py-2 drop-shadow-md"> Home
                 </a>
                 <button
-                    class="bg-metal hover:bg-tahiti-blue rounded-lg px-4 py-2 drop-shadow-md logout-btn">Logout</button>
+                    class="bg-cool-white hover:bg-white  rounded-lg px-4 py-2 drop-shadow-md logout-btn">Logout</button>
             </div>
 
             <div class="md:hidden reletive">
@@ -48,8 +47,7 @@
 
 
     <main class="container w-full sm:w-2/3 sm:mx-auto xl:w-1/2 m-auto text-midnight">
-
-        <div class="bg-cool-white text-sm sm:text-base font-semibold  py-8 md:py-16 px-12 shadow-lg rounded-lg mt-10">
+        <div class="bg-white text-sm sm:text-base font-semibold  py-8 md:py-16 px-12 shadow-lg rounded-lg mt-10">
             <h1 class="pb-8 text-lg uppercase">Fill out the form to submit a reimbursement request!</h1>
             <form id="form" action="submit" class="center w-full lg:w-3/4 mx-auto flex flex-col gap-5">
 
@@ -94,10 +92,6 @@
 
         </div>
     </main>
-    <footer class="fixed bottom-4 w-full flex justify-between items-center">
-        <img src="../src/image/Reimee1.png" class="w-44 ml-10" alt="logo">
-        <h3 class="mr-10 text-midnight">Created by Serena Guo &copy; 2022 </h3>
-    </footer>
     <script src="employee-request.js"></script>
 </body>
 

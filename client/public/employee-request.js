@@ -37,7 +37,7 @@ submitBtn.addEventListener('click', async () => {
 
     if(res.ok){
         formEl.reset();
-        submitMsg.innerText='Your submission has been sent!';
+        submitMsg.innerText='Sent successfully!';
         setTimeout(function(){ location.reload(); }, 3000);
     } else {
         let errorMsg = await res.text();

@@ -14,9 +14,6 @@ public class UserService {
 
     public User login(String username, String password) throws SQLException, FailedLoginException {
 
-        // hash password
-        //String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-
         User user = this.userDao.getUserByUsername(username);
         if (user == null ) {
             throw new FailedLoginException("Username is not recognized");
@@ -26,4 +23,18 @@ public class UserService {
         return user;
     }
 
+    public User signUp(User user) throws SQLException {
+
+        User userExists = this.userDao.getUserByUsername(user.getUsername());
+
+        if(userExists!=null){
+            throw new IllegalArgumentException("The username already exists");
+        }
+        String role = user.getUserRole().toUpperCase();
+        user.setUserRole(role);
+        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        user.setPassword(hashedPassword);
+
+        return this.userDao.signUp(user);
+    }
 }

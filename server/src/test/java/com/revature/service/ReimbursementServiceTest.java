@@ -192,14 +192,13 @@ public class ReimbursementServiceTest {
 //
 //        User author = new User(1,"Jessica","Wang");
 //        User resolver = new User(3,"Leo","An");
-//       // Reimbursement fakeReimbursement = new Reimbursement(1,new BigDecimal(40.00),"Lunch","FOOD","2022-03-07","APPROVED","2022-03-18","https://storage.googleapis.com/employee_reimbursement/receipt5.png",author,resolver);
+//        Reimbursement fakeReimbursement = new Reimbursement(1,new BigDecimal(40.00),"Lunch","FOOD","2022-03-07","APPROVED","2022-03-18","https://storage.googleapis.com/employee_reimbursement/receipt5.png",author,resolver);
 //
+//        when(reimbursementDao.resolveReimbursement("Approved",3,1)).thenReturn(fakeReimbursement);
 //        when(reimbursementDao.checkReimbursement(1)).thenReturn(1);
-//        when(reimbursementDao.resolveReimbursement("Approved",3,1)).thenReturn
-//                (new Reimbursement(1,new BigDecimal(40.00),"Lunch","FOOD","2022-03-07","APPROVED","2022-03-18","https://storage.googleapis.com/employee_reimbursement/receipt5.png",author,resolver));
 //
 //        Reimbursement actual = reimbursementService.resolveReimbursement("Approved",3, "1");
-//        Reimbursement expected = new Reimbursement(1,new BigDecimal(40.00),"Lunch","FOOD","2022-03-07","APPROVED","2022-03-18","https://storage.googleapis.com/employee_reimbursement/receipt5.png",author,resolver);
+//        Reimbursement expected = fakeReimbursement;
 //        Assertions.assertEquals(expected, actual);
 //    }
 

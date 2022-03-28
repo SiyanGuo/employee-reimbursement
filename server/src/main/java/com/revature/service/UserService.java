@@ -11,7 +11,6 @@ public class UserService {
     private UserDao userDao;
 
     public UserService() { this.userDao = new UserDao(); }
-    public UserService(UserDao mockedObject) {this.userDao = mockedObject;}
 
     public User login(String username, String password) throws SQLException, FailedLoginException {
 

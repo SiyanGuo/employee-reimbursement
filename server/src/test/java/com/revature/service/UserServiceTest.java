@@ -5,7 +5,11 @@ import com.revature.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mindrot.jbcrypt.BCrypt;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.security.auth.login.FailedLoginException;
 import java.sql.SQLException;
@@ -14,16 +18,22 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 
-    private UserService userService;
+//    private UserService userService;
+//    private UserDao userDao;
+//    @BeforeEach
+//    public void setup(){
+//        userDao = mock(UserDao.class);
+//        userService = new  UserService(userDao);
+//    }
+
+    @Mock
     private UserDao userDao;
 
-    @BeforeEach
-    public void setup(){
-        userDao = mock(UserDao.class);
-        userService = new  UserService(userDao);
-    }
+    @InjectMocks
+    private UserService userService;
 
     @Test
     public void test_getUserByUsernameNegative() throws SQLException {
@@ -32,7 +42,6 @@ public class UserServiceTest {
         Assertions.assertThrows(FailedLoginException.class, ()->{
         userService.login("employee","password");
         });
-
     }
 
     @Test

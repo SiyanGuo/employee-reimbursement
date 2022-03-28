@@ -39,35 +39,36 @@
                     <label class="block pb-1 pl-1" for="first-name">First Name *</label>
                     <input id="first-name" type="text" name="first-name" class="p-2 rounded-md drop-shadow-sm" required>
                 </div>
+
                 <div class="flex flex-col">
                     <label class="block pb-1 pl-1" for="last-name">Last Name *</label>
                     <input id="last-name" type="text" name="last-name" class="p-2 rounded-md drop-shadow-sm" required>
                 </div>
+
                 <div class="flex flex-col">
                     <label class="block pb-1 pl-1" for="email">Email address *</label>
                     <input id="email" type="text" name="email" class="p-2 rounded-md drop-shadow-sm" required>
                 </div>
 
                 <div class="flex flex-col">
-
                     <label for="role" class="ml-2 pb-2">Role *</label>
                     <select name="role" id="role" required>
                         <option value="" selected="true" disabled>Please select</option>
-                        <option value="finance-manager">Finance Manager</option>
+                        <option value="finance manager">Finance Manager</option>
                         <option value="employee">Employee</option>
                     </select>
                 </div>
 
                 <div class="flex flex-col">
-
-                    <button id="login-btn"
+                    <span id="error-msg" class="text-purple ml-2"></span>
+                    <button id="signup-btn"
                         class="bg-copper-rust hover:bg-tahiti-blue w-25 rounded-lg p-2 mt-4 text-xl drop-shadow-md"
-                        name="login" type="submit">Sign me Up</button>
+                        name="signup" type="submit">Sign me Up</button>
                 </div>
             </form>
 
             <h1 class="text-sm w-5/6 mx-auto">Already have an account? <a class="font-semibold hover:text-bubble-gum"
-                    href="#"> Log in!</a></h1>
+                    href="./index.html"> Log in!</a></h1>
         </aside>
 
         <!-- hero section -->
@@ -85,7 +86,7 @@
 
     </div>
 
-    <script src="index.js"></script>
+    <script src="signup.js"></script>
 </body>
 
 </html>

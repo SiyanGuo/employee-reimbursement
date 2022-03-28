@@ -1,7 +1,6 @@
 package com.revature.service;
 
 import com.revature.dao.UserDao;
-import com.revature.dto.UserResponseDTO;
 import com.revature.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 

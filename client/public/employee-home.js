@@ -5,7 +5,6 @@ let reimbursementCtn = document.querySelector('#reimbursement-container')
 let firstName = document.querySelector('#first-name');
 
 
-
 async function populateReimbursements() {
 
     firstName.innerText = localStorage.getItem('first_name');

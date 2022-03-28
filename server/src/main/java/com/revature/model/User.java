@@ -19,6 +19,8 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String userRole;
 
+    public User(){}
+
     public User(int id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;

@@ -36,8 +36,22 @@ public class AuthenticationController implements Controller {
         ctx.json(userResponseDTO);
     };
 
+    private Handler signup = ctx -> {
+
+        User signedUpUser = ctx.bodyAsClass(User.class);
+
+        User user = userService.signUp(signedUpUser);
+        String jwt = this.jwtService.createJWT(user);
+
+        ctx.header("Access-Control-Expose-Headers", "*");
+        ctx.header("Token", jwt);
+        UserResponseDTO userResponseDTO = new UserResponseDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserRole());
+        ctx.json(userResponseDTO);
+    };
+
     @Override
     public void mapEndpoints(Javalin app) {
         app.post("/login", login);
+        app.post("/signup",signup);
     }
 }

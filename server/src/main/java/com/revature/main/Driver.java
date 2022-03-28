@@ -16,7 +16,6 @@ public class Driver {
 
     public static void main(String[] args) {
 
-
         Javalin app = Javalin.create((config) -> {
             config.enableCorsForAllOrigins();
         });

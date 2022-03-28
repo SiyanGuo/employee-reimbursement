@@ -52,12 +52,12 @@
             <form id="form" action="submit" class="center w-full lg:w-3/4 mx-auto flex flex-col gap-5">
 
                 <div class="flex items-center">
-                    <label for="amount" class="text-right mr-8 basis-1/5">Amount:</label>
+                    <label for="amount" class="text-right mr-8 basis-1/5">Amount: *</label>
                     <input type="text" name="amount" id="amount" class="flex-1" required>
                 </div>
 
                 <div class="flex items-center">
-                    <label for="type" class="text-right mr-8 basis-1/5">Type:</label>
+                    <label for="type" class="text-right mr-8 basis-1/5">Type: *</label>
                     <select name="type" id="type" class="flex-1" required>
                         <option value="" selected="true" disabled>Please select</option>
                         <option value="lodging">Lodging</option>
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="flex items-center">
-                    <label for="receipt" class="text-right mr-8 basis-1/5">Receipt: </label>
+                    <label for="receipt" class="text-right mr-8 basis-1/5">Receipt: *</label>
                     <input type="file" name="receipt" id="receipt" class="flex-1" required>
                 </div>
 
@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="flex items-center">
-                    <label for="description" class="text-right mr-4 sm:mr-8 basis-1/5">Description: <br> <span
+                    <label for="description" class="text-right mr-4 sm:mr-8 basis-1/5">Description: *<br> <span
                             class="text-xs ">(250 characters maxmium)</span></label>
                     <textarea type="text" name="description" id="description" class="flex-1" required></textarea>
                 </div>

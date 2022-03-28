@@ -21,7 +21,7 @@ public class AuthenticationController implements Controller {
         this.jwtService = new JWTService();
     }
 
-    private Handler login = (ctx) -> {
+    private Handler login = ctx -> {
 
         LoginDTO loginInfo = ctx.bodyAsClass(LoginDTO.class);
 

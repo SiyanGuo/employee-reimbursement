@@ -34,10 +34,26 @@ public class JWTService {
             Jws<Claims> token = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt);
             return token;
         } catch(JwtException e) {
-            e.printStackTrace();
             throw new UnauthorizedResponse("JWT was invalid");
         }
 
+    }
+
+    public void verifyEmployee(Jws<Claims> token, String userId) {
+        int id = Integer.parseInt(userId);
+        if (!token.getBody().get("user_role").equals("EMPLOYEE")) {
+            throw new UnauthorizedResponse("You must be an employee to access this endpoint");
+        }
+
+        if (!token.getBody().get("user_id").equals(id)) {
+            throw new UnauthorizedResponse("You cannot obtain assignments that don't belong to yourself");
+        }
+    }
+
+    public void verifyManager(Jws<Claims> token){
+        if (!token.getBody().get("user_role").equals("FINANCE MANAGER")) {
+            throw new UnauthorizedResponse("You must be a Finance Manager to access this endpoint");
+        }
     }
 
 }

@@ -3,7 +3,6 @@ package com.revature.service;
 import com.google.cloud.storage.*;
 import com.revature.dao.ReimbursementDao;
 import com.revature.dto.ReimbursementDTO;
-import com.revature.exception.EmployeetNotFoundException;
 import com.revature.exception.InvalidImageException;
 import com.revature.exception.ReimbursementNotFoundException;
 import com.revature.exception.UploadFailedException;
@@ -23,6 +22,7 @@ public class ReimbursementService {
     public ReimbursementService(){
         this.reimbursementDao = new ReimbursementDao();
     }
+    public ReimbursementService(ReimbursementDao mockedObject) { this.reimbursementDao = mockedObject;}
 
     public List<Reimbursement> getAllReimbursements() throws SQLException {
         List<Reimbursement> reimbursements;
@@ -38,7 +38,7 @@ public class ReimbursementService {
 
            //validate request param
            if (!status.equals("APPROVED") && !status.equals("DENIED")) {
-               throw new IllegalArgumentException("Choose to approve or deny the reimbursement. Invalid input: " + status + " was provided");
+               throw new IllegalArgumentException("Choose to approve or deny the reimbursement. Invalid input: " + status );
            }
 
            //check if reimbursement exists
@@ -56,7 +56,7 @@ public class ReimbursementService {
            return reimbursement;
 
        } catch (NumberFormatException e) {
-           throw new IllegalArgumentException("Reimbursement id must be an int value");
+           throw new IllegalArgumentException("Reimbursement id must be a valid value");
        }
 
     }
@@ -72,7 +72,7 @@ public class ReimbursementService {
             }
             return reimbursements;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Employee id must be an int value");
+            throw new IllegalArgumentException("Employee id must be a valid value");
         }
 
     }
@@ -81,7 +81,7 @@ public class ReimbursementService {
         Tika tika = new Tika();
         String mimeType = tika.detect(fileInputStream);
         if (!mimeType.equals("image/jpeg") && !mimeType.equals("image/png") && !mimeType.equals("image/gif")) {
-            throw new InvalidImageException("Image must be a JPEG, PNG, or GIF");
+            throw new InvalidImageException("File format: JPEG, PNG, or GIF");
         }
         String fileName = UUID.randomUUID().toString();
         String projectId = "global-song-344220";
@@ -104,7 +104,7 @@ public class ReimbursementService {
         String type = reimbursementDTO.getType();
         type = type.toUpperCase();
         if (!type.equals("LODGING") && !type.equals("TRAVEL") && !type.equals("FOOD") && !type.equals("OTHER")  ) {
-            throw new IllegalArgumentException("Valid reimbursement type are LODGING, TRAVEL, FOOD or OTHER. Invalid input: " + type + " was provided");
+            throw new IllegalArgumentException("Valid reimbursement type are LODGING, TRAVEL, FOOD or OTHER. Invalid input: " + type );
         }
         reimbursementDTO.setType(type);
         Reimbursement reimbursement = this.reimbursementDao.addReimbursement(reimbursementDTO, employeeId);

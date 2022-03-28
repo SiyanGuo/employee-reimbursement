@@ -18,9 +18,9 @@
             <img src="../src/image/Reimee1.png" class="w-52" alt="logo">
 
             <div class="hidden md:flex flow-row items-center align-middle gap-4">
-                <a href="./manager-history.html"
+                <a href="./manager-home.html"
                     class="bg-cool-white hover:bg-white rounded-lg px-4 py-2 drop-shadow-md">
-                    Resolved Requests</a>
+                    Home</a>
                 <button
                     class="bg-cool-white hover:bg-white rounded-lg px-4 py-2 drop-shadow-md logout-btn">Logout</button>
             </div>
@@ -35,8 +35,7 @@
                 </button>
                 <!-- mobile menu -->
                 <div class="hidden md:hidden mt-12" id="mobile-menu">
-                    <a href="./manager-history.html" class="py-2 px-4 text-right block request-btn">Resolved
-                        Requests</a>
+                    <a href="./manager-home.html" class="py-2 px-4 text-right block request-btn">Home</a>
                     <button class="py-2 px-4 text-right block logout-btn">Logout</botton>
                 </div>
 
@@ -44,9 +43,9 @@
         </div>
     </header>
 
-    <main class="container mt-6 pb-20 relative">
-        <h1 class="font-header text-3xl font-semibold mt-5 mb-10 ml-2 text-midnight">Welcome back <span
-                id="first-name"></span>! You have <span id="num-ofunresolved"></span> unresolved request(s):</h1>
+    <main class="container mt-6 pb-20">
+        <h1 class="font-header text-3xl font-semibold mt-5 mb-10 ml-2 text-midnight">You have <span
+                id="num-of-requests"></span> resolved request(s):</h1>
         <h2 class="font-header text-2xl text-midnight mb-10" id="error-msg"> </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="reimbursement-container">
 
@@ -73,8 +72,7 @@
 
     </main>
 
-
-    <script src="manager-home.js"></script>
+    <script src="manager-history.js"></script>
 </body>
 
 </html>

@@ -26,59 +26,47 @@ public class ReimbursementController implements Controller{
         this.reimbursementService = new ReimbursementService();
     }
 
-    private Handler getAllReimbursements = (ctx) ->{
+    private Handler getAllReimbursements = ctx ->{
 
         if(ctx.header("Authorization")==null) {
             throw new UnauthorizedResponse("You must be logged in to access this endpoint");
         }
         String jwt = ctx.header("Authorization").split(" ")[1];
-
         Jws<Claims> token = this.jwtService.parseJwt(jwt);
-        if (!token.getBody().get("user_role").equals("Finance Manager")) {
-            throw new UnauthorizedResponse("You must be a Finance Manager to access this endpoint");
-        }
 
+        this.jwtService.verifyManager(token);
         List<Reimbursement> reimbursements = this.reimbursementService.getAllReimbursements();
 
         ctx.json(reimbursements);
     };
 
-    private Handler resolveReimbursement = (ctx) ->{
+    private Handler resolveReimbursement = ctx ->{
         if(ctx.header("Authorization")==null) {
             throw new UnauthorizedResponse("You must be logged in to access this endpoint");
         }
         String jwt = ctx.header("Authorization").split(" ")[1];
 
         Jws<Claims> token = this.jwtService.parseJwt(jwt);
-        if (!token.getBody().get("user_role").equals("Finance Manager")) {
-            throw new UnauthorizedResponse("You must be a Finance Manager to access this endpoint");
-        }
+
+        this.jwtService.verifyManager(token);
         int trainerId = token.getBody().get("user_id", Integer.class);
         String reimbursementId = ctx.pathParam("reimbursement_id");
 
         String status = ctx.formParam("status");
-        System.out.println("status form param"+status);
         Reimbursement reimbursement = this.reimbursementService.resolveReimbursement(status, trainerId, reimbursementId);
 
         ctx.json(reimbursement);
     };
 
-    private Handler getSpecificEmployeeReimbursements = (ctx) ->  {
+    private Handler getSpecificEmployeeReimbursements = ctx ->  {
         if(ctx.header("Authorization")==null) {
             throw new UnauthorizedResponse("You must be logged in to access this endpoint");
         }
         String jwt = ctx.header("Authorization").split(" ")[1];
         Jws<Claims> token = this.jwtService.parseJwt(jwt);
-
-        if (!token.getBody().get("user_role").equals("EMPLOYEE")) {
-            throw new UnauthorizedResponse("You must be an employee to access this endpoint");
-        }
-
         String userId = ctx.pathParam("user_id");
-        if (!token.getBody().get("user_id").toString().equals(userId)) {
-            throw new UnauthorizedResponse("You cannot obtain assignments that don't belong to yourself");
-        }
 
+        this.jwtService.verifyEmployee(token, userId);
         List<Reimbursement> reimbursements = this.reimbursementService.getSpecificEmployeeReimbursements(userId);
         ctx.json(reimbursements);
     };
@@ -88,25 +76,20 @@ public class ReimbursementController implements Controller{
         UploadedFile file = ctx.uploadedFile("image");
         InputStream fileInputStream = file.getContent();
         String uploadedFileUrl = this.reimbursementService.uploadToCloudStorage(fileInputStream);
-        ctx.result(uploadedFileUrl);
+        ctx.header("Access-Control-Expose-Headers", "*");
+        ctx.header("Image", uploadedFileUrl);
+        ctx.result("Image uploaded");
     };
 
-    private Handler addReimbursement = (ctx) ->{
+    private Handler addReimbursement = ctx ->{
         if(ctx.header("Authorization")==null) {
             throw new UnauthorizedResponse("You must be logged in to access this endpoint");
         }
         String jwt = ctx.header("Authorization").split(" ")[1];
         Jws<Claims> token = this.jwtService.parseJwt(jwt);
-
-        if (!token.getBody().get("user_role").equals("EMPLOYEE")) {
-            throw new UnauthorizedResponse("You must be an employee to access this endpoint");
-        }
-
         String userId = ctx.pathParam("user_id");
-        if (!token.getBody().get("user_id").toString().equals(userId)) {
-            throw new UnauthorizedResponse("You cannot obtain assignments that don't belong to yourself");
-        }
 
+        this.jwtService.verifyEmployee(token, userId);
         ReimbursementDTO reimbursementDTO = ctx.bodyAsClass(ReimbursementDTO.class);
         Reimbursement reimbursements = this.reimbursementService.addReimbursement(reimbursementDTO, userId);
 

@@ -15,19 +15,10 @@ import javax.security.auth.login.FailedLoginException;
 import java.sql.SQLException;
 
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
-
-//    private UserService userService;
-//    private UserDao userDao;
-//    @BeforeEach
-//    public void setup(){
-//        userDao = mock(UserDao.class);
-//        userService = new  UserService(userDao);
-//    }
 
     @Mock
     private UserDao userDao;
@@ -36,7 +27,7 @@ public class UserServiceTest {
     private UserService userService;
 
     @Test
-    public void test_getUserByUsernameNegative() throws SQLException {
+    public void test_getUserByUsername_negative() throws SQLException {
 
         when(userDao.getUserByUsername(eq("employee"))).thenReturn(null);
         Assertions.assertThrows(FailedLoginException.class, ()->{
@@ -45,7 +36,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void test_checkPasswordPositive() throws SQLException, FailedLoginException {
+    public void test_checkPassword_positive() throws SQLException, FailedLoginException {
         User fakeUser = new User (10,"employee","$2a$10$p9Kx8jxJoOGjNzTGZ5H6x.mddC9ycjxZovZiFnunZcIUAhMWXEPsi","Nana","Lu", "nl@gmail.com","EMPLOYEE");
         when(userDao.getUserByUsername(eq("employee"))).thenReturn(fakeUser);
         User actual =  userService.login("employee","pass123");
@@ -54,12 +45,31 @@ public class UserServiceTest {
     }
 
     @Test
-    public void test_checkPasswordNegative() throws SQLException {
+    public void test_checkPassword_negative() throws SQLException {
         User fakeUser = new User (10,"employee","$2a$10$p9Kx8jxJoOGjNzTGZ5H6x.mddC9ycjxZovZiFnunZcIUAhMWXEPsi","Nana","Lu", "nl@gmail.com","EMPLOYEE");
         when(userDao.getUserByUsername(eq("employee"))).thenReturn(fakeUser);
 
         Assertions.assertThrows(FailedLoginException.class, () -> {
             userService.login("employee","password");
         });
+    }
+
+    @Test
+    public void test_signUp_negative() throws SQLException {
+        User fakeUser = new User (10,"employee","password","Nana","Lu", "nl@gmail.com","EMPLOYEE");
+        when(userDao.getUserByUsername(eq("employee"))).thenReturn(fakeUser);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            userService.login("employee","password");
+        });
+    }
+
+    @Test
+    public void test_signUp_positive() throws SQLException {
+        User fakeUser = new User (10,"employee99","password","Nana","Lu", "nl@gmail.com","EMPLOYEE");
+        when(userDao.getUserByUsername(eq("employee99"))).thenReturn(null);
+        when(userDao.signUp(fakeUser)).thenReturn(fakeUser);
+        User actual =  userService.signUp(fakeUser);
+        User expected = fakeUser;
+        Assertions.assertEquals(expected, actual);
     }
 }

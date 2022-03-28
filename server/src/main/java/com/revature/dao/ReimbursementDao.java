@@ -163,7 +163,7 @@ public class ReimbursementDao {
 
                 if (!rs.next()) {return null;}
 
-                while (rs.next()) {
+             do {
                     //author
                     int authorId = rs.getInt("author_id");
                     String authorFName = rs.getString("author_first");
@@ -191,7 +191,7 @@ public class ReimbursementDao {
                     Reimbursement r = new Reimbursement(id, amount, description, type, submittedAt, status, resolvedAt, receipt, author, resolver);
 
                     reimbursements.add(r);
-                }
+                }  while (rs.next());
                 return reimbursements;
             }
         }

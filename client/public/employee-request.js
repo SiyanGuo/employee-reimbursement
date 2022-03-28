@@ -1,4 +1,3 @@
-let firstName = document.querySelector('#first-name');
 let logoutBtn = document.querySelector('.logout-btn');
 let uploadBtn = document.querySelector('#upload-btn');
 let receiptFile = document.querySelector('#receipt');
@@ -9,8 +8,6 @@ let typeEl = document.querySelector('#type');
 let descriptionEl = document.querySelector('#description');
 let formEl = document.querySelector('#form');
 let submitMsg = document.querySelector('#submit-message');
-
-firstName.innerText = localStorage.getItem('first_name');
 
 let imageUrl;
 

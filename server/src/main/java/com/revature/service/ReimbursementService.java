@@ -3,7 +3,6 @@ package com.revature.service;
 import com.google.cloud.storage.*;
 import com.revature.dao.ReimbursementDao;
 import com.revature.dto.ReimbursementDTO;
-import com.revature.exception.EmployeetNotFoundException;
 import com.revature.exception.InvalidImageException;
 import com.revature.exception.ReimbursementNotFoundException;
 import com.revature.exception.UploadFailedException;

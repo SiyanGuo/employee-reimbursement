@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+//    id 'java-library'
 }
 
 group 'org.example'
@@ -8,6 +9,20 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+jar{
+    manifest{
+        attributes 'Main-Class': 'com.revature.main.Driver'
+    }
+
+    from {
+        (configurations.runtimeClasspath).collect{
+            it.isDirectory()? it : zipTree(it)
+        }
+    }
+
+    duplicatesStrategy 'exclude'
 }
 
 jacoco {
@@ -36,7 +51,7 @@ dependencies {
     implementation 'io.javalin:javalin:4.3.0'
     implementation 'ch.qos.logback:logback-classic:1.2.11'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     testImplementation 'org.mockito:mockito-junit-jupiter:4.4.0'
     testImplementation 'org.mockito:mockito-core:4.3.1'
     implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
@@ -44,6 +59,10 @@ dependencies {
     implementation 'com.google.cloud:google-cloud-storage'
     implementation 'org.apache.tika:tika-core:2.3.0'
 }
+
+//compileJava {
+//    options.release = 8
+//}
 
 test {
     useJUnitPlatform()

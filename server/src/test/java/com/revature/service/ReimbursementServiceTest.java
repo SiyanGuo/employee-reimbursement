@@ -32,7 +32,7 @@ public class ReimbursementServiceTest {
     }
 
     @Test
-    public void test_GetAllReimbursements_positive() throws SQLException {
+    public void test_GetAllReimbursements_positive() throws SQLException, ClassNotFoundException {
         List<Reimbursement> fakeReimbursements = new ArrayList<>();
         User author = new User(1,"Jessica","Wang");
         User resolver = new User(2,"Leo","An");
@@ -47,7 +47,7 @@ public class ReimbursementServiceTest {
 
 //    negative
     @Test
-    public void test_getSpecificEmployee_invalidId() throws ReimbursementNotFoundException, SQLException {
+    public void test_getSpecificEmployee_invalidId() throws ReimbursementNotFoundException, SQLException, ClassNotFoundException {
 
         try {
         reimbursementService.getSpecificEmployeeReimbursements("abc");
@@ -62,7 +62,7 @@ public class ReimbursementServiceTest {
 
 //    negative
     @Test
-    public void test_getSpecificEmployee_noReimbursementsFound() throws SQLException {
+    public void test_getSpecificEmployee_noReimbursementsFound() throws SQLException, ClassNotFoundException {
 
         when(reimbursementDao.getSpecificEmployeeReimbursements(eq(4))).thenReturn(null);
         try {
@@ -77,7 +77,7 @@ public class ReimbursementServiceTest {
     }
 
     @Test
-    public void test_getSpecificEmployee_positive () throws SQLException, ReimbursementNotFoundException {
+    public void test_getSpecificEmployee_positive () throws SQLException, ReimbursementNotFoundException, ClassNotFoundException {
         List<Reimbursement> fakeReimbursements = new ArrayList<>();
         User author = new User(1,"Jessica","Wang");
         User resolver = new User(2,"Leo","An");
@@ -92,7 +92,7 @@ public class ReimbursementServiceTest {
 
 //    negative
     @Test
-    public void test_addReimbursement_invalidType() throws SQLException {
+    public void test_addReimbursement_invalidType() throws SQLException, ClassNotFoundException {
 
         ReimbursementDTO fakeReimbursement = new ReimbursementDTO();
         fakeReimbursement.setAmount(new BigDecimal(90.00));
@@ -112,7 +112,7 @@ public class ReimbursementServiceTest {
     }
 
     @Test
-    public void test_addReimbursement_positive() throws SQLException {
+    public void test_addReimbursement_positive() throws SQLException, ClassNotFoundException {
         User author = new User(1,"Jessica","Wang");
 
         Reimbursement returnedReimbursement = new Reimbursement(1,new BigDecimal(90.00),"two bottles of wine","FOOD","2022-03-07","PENDING",null,"https://storage.googleapis.com/employee_reimbursement/receipt5.png",author,null);
@@ -131,7 +131,7 @@ public class ReimbursementServiceTest {
     }
 
     @Test
-    public void test_resolveReimbursement_invalidStatus() throws ReimbursementNotFoundException, SQLException {
+    public void test_resolveReimbursement_invalidStatus() throws ReimbursementNotFoundException, SQLException, ClassNotFoundException {
         try {
             reimbursementService.resolveReimbursement("okay", 3,"10");
             fail();
@@ -144,7 +144,7 @@ public class ReimbursementServiceTest {
     }
 
     @Test
-    public void test_resolvedReimbursement_notFound() throws ReimbursementNotFoundException, SQLException {
+    public void test_resolvedReimbursement_notFound() throws SQLException, ClassNotFoundException {
 
         when(reimbursementDao.checkReimbursement(anyInt())).thenReturn(-1);
 
@@ -160,7 +160,7 @@ public class ReimbursementServiceTest {
     }
 
     @Test
-    public void test_resolvedReimbursement_notPending() throws SQLException, ReimbursementNotFoundException {
+    public void test_resolvedReimbursement_notPending() throws SQLException, ReimbursementNotFoundException, ClassNotFoundException {
         when(reimbursementDao.checkReimbursement(anyInt())).thenReturn(2);
 
         try {
@@ -175,7 +175,7 @@ public class ReimbursementServiceTest {
     }
 
     @Test
-    public void test_resolvedReimbursement_invalidId() throws ReimbursementNotFoundException, SQLException {
+    public void test_resolvedReimbursement_invalidId() throws ReimbursementNotFoundException, SQLException, ClassNotFoundException {
         try {
             reimbursementService.resolveReimbursement("denied",3, "abc");
             fail();
@@ -188,7 +188,7 @@ public class ReimbursementServiceTest {
     }
 
 //    @Test
-//    public void test_resolvedReimbursement_positive() throws SQLException, ReimbursementNotFoundException {
+//    public void test_resolvedReimbursement_positive() throws SQLException, ReimbursementNotFoundException, ClassNotFoundException {
 //
 //        User author = new User(1,"Jessica","Wang");
 //        User resolver = new User(3,"Leo","An");

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ReimbursementDao {
 
-    public List<Reimbursement> getAllReimbursements() throws SQLException {
+    public List<Reimbursement> getAllReimbursements() throws SQLException, ClassNotFoundException {
         try (Connection con = ConnectionUtility.getConnection()) {
             List<Reimbursement> reimbursements = new ArrayList<>();
             String sql = "select r.*, u.first_name as author_first, u.last_name as author_last, u2.first_name as resolver_first, u2.last_name as resolver_last " +
@@ -60,7 +60,7 @@ public class ReimbursementDao {
         }
     }
 
-    public Reimbursement resolveReimbursement(String status, int managerId, int reimbursementId) throws SQLException {
+    public Reimbursement resolveReimbursement(String status, int managerId, int reimbursementId) throws SQLException, ClassNotFoundException {
         try (Connection con = ConnectionUtility.getConnection()) {
             con.setAutoCommit(false);
             String sql = "update reimbursement " +
@@ -125,7 +125,7 @@ public class ReimbursementDao {
         }
     }
 
-    public int checkReimbursement(int reimbursementId) throws SQLException {
+    public int checkReimbursement(int reimbursementId) throws SQLException, ClassNotFoundException {
         try(Connection con = ConnectionUtility.getConnection()){
             String sql = "select status_id " +
                     "from reimbursement " +
@@ -145,7 +145,7 @@ public class ReimbursementDao {
         }
     }
 
-    public List<Reimbursement> getSpecificEmployeeReimbursements(int employeeId) throws SQLException {
+    public List<Reimbursement> getSpecificEmployeeReimbursements(int employeeId) throws SQLException, ClassNotFoundException {
         try (Connection con = ConnectionUtility.getConnection()) {
             String sql = "select r.*, u.first_name as author_first, u.last_name as author_last, u2.first_name as resolver_first, u2.last_name as resolver_last\n" +
                     "from reimbursement_full r " +
@@ -197,7 +197,7 @@ public class ReimbursementDao {
         }
     }
 
-    public Reimbursement addReimbursement(ReimbursementDTO reimbursementDTO, int employeeId) throws SQLException {
+    public Reimbursement addReimbursement(ReimbursementDTO reimbursementDTO, int employeeId) throws SQLException, ClassNotFoundException {
         try (Connection con = ConnectionUtility.getConnection()) {
             con.setAutoCommit(false);
             String sql = "insert into reimbursement (amount, author_id, description, type_id, submitted_at, receipt) " +

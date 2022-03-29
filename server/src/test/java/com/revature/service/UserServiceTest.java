@@ -27,7 +27,7 @@ public class UserServiceTest {
     private UserService userService;
 
     @Test
-    public void test_getUserByUsername_negative() throws SQLException {
+    public void test_getUserByUsername_negative() throws SQLException, ClassNotFoundException {
 
         when(userDao.getUserByUsername(eq("employee"))).thenReturn(null);
         Assertions.assertThrows(FailedLoginException.class, ()->{
@@ -36,7 +36,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void test_checkPassword_positive() throws SQLException, FailedLoginException {
+    public void test_checkPassword_positive() throws SQLException, FailedLoginException, ClassNotFoundException {
         User fakeUser = new User (10,"employee","$2a$10$p9Kx8jxJoOGjNzTGZ5H6x.mddC9ycjxZovZiFnunZcIUAhMWXEPsi","Nana","Lu", "nl@gmail.com","EMPLOYEE");
         when(userDao.getUserByUsername(eq("employee"))).thenReturn(fakeUser);
         User actual =  userService.login("employee","pass123");
@@ -45,7 +45,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void test_checkPassword_negative() throws SQLException {
+    public void test_checkPassword_negative() throws SQLException, ClassNotFoundException {
         User fakeUser = new User (10,"employee","$2a$10$p9Kx8jxJoOGjNzTGZ5H6x.mddC9ycjxZovZiFnunZcIUAhMWXEPsi","Nana","Lu", "nl@gmail.com","EMPLOYEE");
         when(userDao.getUserByUsername(eq("employee"))).thenReturn(fakeUser);
 
@@ -55,7 +55,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void test_signUp_negative() throws SQLException {
+    public void test_signUp_negative() throws SQLException, ClassNotFoundException {
         User fakeUser = new User (10,"employee","password","Nana","Lu", "nl@gmail.com","EMPLOYEE");
         when(userDao.getUserByUsername(eq("employee"))).thenReturn(fakeUser);
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -64,7 +64,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void test_signUp_positive() throws SQLException {
+    public void test_signUp_positive() throws SQLException, ClassNotFoundException {
         User fakeUser = new User (10,"employee99","password","Nana","Lu", "nl@gmail.com","EMPLOYEE");
         when(userDao.getUserByUsername(eq("employee99"))).thenReturn(null);
         when(userDao.signUp(fakeUser)).thenReturn(fakeUser);

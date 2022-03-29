@@ -24,13 +24,13 @@ public class ReimbursementService {
     }
     public ReimbursementService(ReimbursementDao mockedObject) { this.reimbursementDao = mockedObject;}
 
-    public List<Reimbursement> getAllReimbursements() throws SQLException {
+    public List<Reimbursement> getAllReimbursements() throws SQLException, ClassNotFoundException {
         List<Reimbursement> reimbursements;
         reimbursements = this.reimbursementDao.getAllReimbursements();
         return reimbursements;
     }
 
-    public Reimbursement resolveReimbursement(String status, int managerId, String reimbursementId) throws SQLException, ReimbursementNotFoundException {
+    public Reimbursement resolveReimbursement(String status, int managerId, String reimbursementId) throws SQLException, ReimbursementNotFoundException, ClassNotFoundException {
        try {
 
            int id = Integer.parseInt(reimbursementId);
@@ -61,7 +61,7 @@ public class ReimbursementService {
 
     }
 
-    public List<Reimbursement> getSpecificEmployeeReimbursements (String userId) throws SQLException, ReimbursementNotFoundException {
+    public List<Reimbursement> getSpecificEmployeeReimbursements (String userId) throws SQLException, ReimbursementNotFoundException, ClassNotFoundException {
         try {
             int employeeId = Integer.parseInt(userId);
             List<Reimbursement> reimbursements;
@@ -98,7 +98,7 @@ public class ReimbursementService {
         return publicUrl;
     }
 
-    public Reimbursement addReimbursement(ReimbursementDTO reimbursementDTO, String userId) throws SQLException {
+    public Reimbursement addReimbursement(ReimbursementDTO reimbursementDTO, String userId) throws SQLException, ClassNotFoundException {
         int employeeId = Integer.parseInt(userId);
 
         String type = reimbursementDTO.getType();

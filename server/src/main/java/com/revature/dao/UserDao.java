@@ -9,7 +9,7 @@ public class UserDao {
     public UserDao(){
     }
 
-    public User getUserByUsername(String username) throws SQLException {
+    public User getUserByUsername(String username) throws SQLException, ClassNotFoundException {
         try (Connection con = ConnectionUtility.getConnection()) {
             String sql = "select * from user_with_user_role " +
                     "where user_with_user_role.username = ? ";
@@ -35,7 +35,7 @@ public class UserDao {
         }
     }
 
-    public User signUp(User user) throws SQLException {
+    public User signUp(User user) throws SQLException, ClassNotFoundException {
         try(Connection con = ConnectionUtility.getConnection()){
             String sql =  "insert into users (username, password, first_name, last_name, email, user_role_id) "+
         "values (?, ?, ?, ?, ?, (select ur.id from user_role ur where ur.role = ?))";

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="icon" href="../src/image/icon copy.png">
+    <link rel="icon" href="./image/icon copy.png">
     <title>Login | Reimee</title>
 
 </head>
@@ -19,7 +19,7 @@
         <!-- login section -->
 
         <aside class="sm:flex-1 lg:flex-none px-10 pt-20 sm:mt-28 sm:mx-20 ">
-            <img src="../src/image/Reimee1.png" class="w-36 md:-ml-1 md:-mt-16" alt="logo">
+            <img src="./image/Reimee1.png" class="w-36 md:-ml-1 md:-mt-16" alt="logo">
             <form method="post" class="flex gap-7 flex-col mb-3">
                 <h1 class="font-header text-4xl my-5 font-semibold">Log in to your account</h1>
                 <div class="flex flex-col mb-4">
@@ -54,12 +54,32 @@
 
             </div>
             
-            <img class="absolute bottom-0 bg-contain w-full" src="../src/image/login2.png" alt="a group of employee">
+            <img class="absolute bottom-0 bg-contain w-full" src="./image/login2.png" alt="a group of employee">
         </main>
 
     </div>
 
     <script src="index.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyALTWgiGOGMAzz2rRcUGvVvTbbHXU_aF2k",
+          authDomain: "employee-reimbursement-6b730.firebaseapp.com",
+          projectId: "employee-reimbursement-6b730",
+          storageBucket: "employee-reimbursement-6b730.appspot.com",
+          messagingSenderId: "1059291807033",
+          appId: "1:1059291807033:web:52318775cdebbab3c7fce8"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+      </script>
+
 </body>
 
 </html>

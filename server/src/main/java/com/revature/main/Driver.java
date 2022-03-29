@@ -5,7 +5,6 @@ import com.revature.controller.Controller;
 import com.revature.controller.ExceptionController;
 import com.revature.controller.ReimbursementController;
 import io.javalin.Javalin;
-import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,13 +32,3 @@ public class Driver {
         }
     }
 }
-
-//    String salt = BCrypt.gensalt();
-//    String hashedPassword = BCrypt.hashpw("pass123", salt);
-//        System.out.println(hashedPassword);
-//
-//                if (BCrypt.checkpw("pass123", hashedPassword)) {
-//                System.out.println("matched");
-//                } else {
-//                System.out.println("not matched");
-//                }

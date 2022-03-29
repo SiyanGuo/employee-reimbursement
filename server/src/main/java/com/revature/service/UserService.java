@@ -12,7 +12,7 @@ public class UserService {
 
     public UserService() { this.userDao = new UserDao(); }
 
-    public User login(String username, String password) throws SQLException, FailedLoginException {
+    public User login(String username, String password) throws SQLException, FailedLoginException, ClassNotFoundException {
 
         User user = this.userDao.getUserByUsername(username);
         if (user == null ) {
@@ -23,7 +23,7 @@ public class UserService {
         return user;
     }
 
-    public User signUp(User user) throws SQLException {
+    public User signUp(User user) throws SQLException, ClassNotFoundException {
 
         User userExists = this.userDao.getUserByUsername(user.getUsername());
 

@@ -8,7 +8,7 @@ let firstName = document.querySelector('#first-name');
 async function populateReimbursements() {
 
     firstName.innerText = localStorage.getItem('first_name');
-    const URL = `http://localhost:8081/users/${localStorage.getItem('user_id')}/reimbursements`;
+    const URL = `http://35.225.66.206:8081/users/${localStorage.getItem('user_id')}/reimbursements`;
 
     let res = await fetch(URL, {
         method: 'GET',
@@ -110,13 +110,13 @@ logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('jwt');
     localStorage.removeItem('user_id');
     localStorage.removeItem('first_name');
-    window.location = '/public/index.html';
+    window.location = '/index.html';
 });
 
 
 window.addEventListener('load', (event) => {
     if (localStorage.getItem('jwt') == null) {
-        window.location = '/public/forbidden.html'
+        window.location = '/forbidden.html'
     }
     populateReimbursements();
 });

@@ -23,7 +23,7 @@ signupBtn.addEventListener('click', async () => {
     let lastNameInput = document.querySelector('#last-name');
     let emailInput = document.querySelector('#email');
     let roleInput = document.querySelector('#role');
-    const URL = 'http://localhost:8081/signup';
+    const URL = 'http://35.225.66.206:8081/signup';
 
     const jsonString = JSON.stringify({
         "username": usernameInput.value,
@@ -49,9 +49,9 @@ signupBtn.addEventListener('click', async () => {
         localStorage.setItem('user_id', user.id);
 
         if (user.userRole === 'EMPLOYEE') {
-            window.location = '/public/employee-home.html';
+            window.location.assign('/employee-home.html');
         } else if (user.userRole === 'FINANCE MANAGER') {
-            window.location = '/public/manager-home.html';
+            window.location.assign('/manager-home.html')
         }
     } else {
         let errorMsg = await res.text();

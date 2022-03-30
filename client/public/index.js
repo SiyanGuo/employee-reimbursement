@@ -20,7 +20,7 @@ loginBtn.addEventListener('click', async () => {
     let usernameInput = document.querySelector('#username');
     let passwordInput = document.querySelector('#password');
 
-    const URL = 'http://localhost:8081/login';
+    const URL = 'http://35.225.66.206:8081/login';
 
     const jsonString = JSON.stringify({
         "username": usernameInput.value,
@@ -42,9 +42,9 @@ loginBtn.addEventListener('click', async () => {
         localStorage.setItem('user_id', user.id);
 
         if (user.userRole === 'EMPLOYEE') {
-            window.location = '/public/employee-home.html';
+            window.location.pathname = '/employee-home.html';
         } else if (user.userRole === 'FINANCE MANAGER') {
-            window.location = '/public/manager-home.html';
+            window.location.pathname = '/manager-home.html';
         }
     } else {
         let errorMsg = await res.text();

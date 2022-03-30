@@ -14,7 +14,7 @@ let imageUrl;
 
 submitBtn.addEventListener('click', async () => {
     event.preventDefault();
-    const URL = `http://localhost:8081/users/${localStorage.getItem('user_id')}/reimbursements`;
+    const URL = `http://35.225.66.206:8081/users/${localStorage.getItem('user_id')}/reimbursements`;
 
 
     if(isNaN(amountEl.value)){
@@ -52,7 +52,7 @@ uploadBtn.addEventListener('click', async () => {
     const formData = new FormData();
     
     formData.append('image', receiptFile.files[0]);
-    const URL = 'http://localhost:8081/reimbursements/image-upload';
+    const URL = 'http://35.225.66.206:8081/reimbursements/image-upload';
 
     let res = await fetch(URL, {
         method: 'POST',
@@ -79,5 +79,5 @@ logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('jwt');
     localStorage.removeItem('user_id');
     localStorage.removeItem('first_name');
-    window.location = '/public/index.html';
+    window.location = '/index.html';
 });

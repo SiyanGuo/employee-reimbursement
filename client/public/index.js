@@ -42,9 +42,9 @@ loginBtn.addEventListener('click', async () => {
         localStorage.setItem('user_id', user.id);
 
         if (user.userRole === 'EMPLOYEE') {
-            window.location.pathname = '/employee-home.html';
+            window.location.assign('/employee-home.html')
         } else if (user.userRole === 'FINANCE MANAGER') {
-            window.location.pathname = '/manager-home.html';
+            window.location.assign('/manager-home.html')
         }
     } else {
         let errorMsg = await res.text();

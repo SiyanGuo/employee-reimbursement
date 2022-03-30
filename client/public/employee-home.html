@@ -46,11 +46,17 @@
 
     <main class="container mt-6 pb-20">
         <h1 class="font-header text-3xl font-semibold mt-5 mb-10 ml-2 text-midnight">Welcome back <span
-                id="first-name"></span>!</h1>
+                id="first-name"></span>. You have <span id="filter-msg"></span> reimbursement request(s):</h1>
+        <select name="r-status" id="r-status" class="mb-6" required>
+            <option value="all" selected="true">View All</option>
+            <option value="PENDING">Pending</option>
+            <option value="APPROVED">Approved</option>
+            <option value="DENIED">Denied</option>
+        </select>
         <h2 class="font-header text-2xl text-midnight" id="error-msg"> </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="reimbursement-container">
 
-            <!-- RECEIPT CARD -->
+            <!-- Request CARD -->
             <!-- <div class="bg-white rounded-lg px-4 py-4 shadow-lg">
                 <h2 class="tracking-widest text-bubble-gum text-xl pb-3 font-semibold">PENDING</h2>
                 <h2 class="tracking-widest  pb-3">Id: 4</h2>

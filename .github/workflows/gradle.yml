@@ -13,12 +13,15 @@ on:
   pull_request:
     branches: [ main ]
 
-
-
+defaults:
+  run:
+    working-directory: server
+    
 jobs:
   build:   
     runs-on: ubuntu-latest
 
+        
     steps:
     - uses: actions/checkout@v3
     
@@ -29,9 +32,8 @@ jobs:
         distribution: 'temurin'
         
     - name: Change wrapper permissions
-      run: chmod +x ./server/gradlew
-    - name: chang directory
-      run: cd ./server
+      run: chmod +x ./gradlew
+
     - name: Build with Gradle
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:

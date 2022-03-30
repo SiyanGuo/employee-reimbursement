@@ -13,15 +13,15 @@ on:
   pull_request:
     branches: [ main ]
 
-defaults:
-  run:
-    working-directory: server
+
 
 jobs:
-  build:
-      
+  build:   
     runs-on: ubuntu-latest
-
+  defaults:
+    runs-on:
+     working-directory: server
+    
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11

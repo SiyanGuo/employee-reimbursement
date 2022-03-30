@@ -113,8 +113,6 @@ document.addEventListener('click', async function(e){
     if(e.target && e.target.classList.contains('resolve-btn')){
         let reimbursementId = e.target.getAttribute('data-id');
         let decision = e.target.getAttribute('data-resolve');
-        console.log('reimbId', reimbursementId);
-        console.log('resolve', decision);
 
         const formData = new FormData();
     

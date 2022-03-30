@@ -799,6 +799,10 @@ select{
   margin-bottom: 2.5rem;
 }
 
+.mb-6{
+  margin-bottom: 1.5rem;
+}
+
 .mt-10{
   margin-top: 2.5rem;
 }
@@ -877,6 +881,14 @@ select{
 
 .basis-1\/5{
   flex-basis: 20%;
+}
+
+.basis-2\/5{
+  flex-basis: 40%;
+}
+
+.basis-1\/4{
+  flex-basis: 25%;
 }
 
 .grid-cols-1{
@@ -1164,8 +1176,16 @@ select{
   font-weight: 700;
 }
 
+.font-thin{
+  font-weight: 100;
+}
+
 .uppercase{
   text-transform: uppercase;
+}
+
+.leading-normal{
+  line-height: 1.5;
 }
 
 .tracking-widest{
@@ -1375,6 +1395,10 @@ select{
 
   .lg\:w-3\/4{
     width: 75%;
+  }
+
+  .lg\:w-5\/6{
+    width: 83.333333%;
   }
 
   .lg\:flex-none{

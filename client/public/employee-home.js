@@ -10,7 +10,7 @@ let reimbursements = [];
 async function fetchReimbursements() {
 
     firstName.innerText = localStorage.getItem('first_name');
-    const URL = `http://localhost:8081/users/${localStorage.getItem('user_id')}/reimbursements`;
+    const URL = `http://35.225.66.206:8081/users/${localStorage.getItem('user_id')}/reimbursements`;
 
     let res = await fetch(URL, {
         method: 'GET',

@@ -23,7 +23,7 @@ loginForm.addEventListener('submit', async (e) => {
     const formData = new FormData();
     formData.append("username", usernameInput.value);
     formData.append("password", passwordInput.value);
-    const URL = 'http://localhost:8081/login';
+    const URL = 'http://35.225.66.206:8081/login';
 
     let res = await fetch(URL, {
         method: 'POST',

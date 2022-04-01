@@ -76,7 +76,6 @@ public class ReimbursementController implements Controller{
 
         UploadedFile file = ctx.uploadedFile("image");
         InputStream fileInputStream = file.getContent();
-       // String uploadedFileUrl = this.reimbursementService.uploadToCloudStorage(fileInputStream);
 
         String uploadedFileUrl =  ImageUploadUtility.uploadToCloudStorage(fileInputStream);
         ctx.header("Access-Control-Expose-Headers", "*");

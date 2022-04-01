@@ -49,8 +49,6 @@ public class AuthenticationController implements Controller {
         String role = ctx.formParam("userRole");
 
         User signedUpUser = new User(-1, username, password, firstName,lastName,email, role);
-  //      User signedUpUser = ctx.bodyAsClass(User.class);
-
         User user = userService.signUp(signedUpUser);
         String jwt = this.jwtService.createJWT(user);
 

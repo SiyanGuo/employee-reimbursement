@@ -33,7 +33,7 @@ signupForm.addEventListener('submit', async (e) => {
     formData.append("email", emailInput.value);
     formData.append("userRole", roleInput.value);
 
-    const URL = 'http://localhost:8081/signup';
+    const URL = 'http://35.225.66.206:8081/signup';
 
     let res = await fetch(URL, {
         method: 'POST',

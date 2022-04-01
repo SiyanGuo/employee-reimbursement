@@ -10,7 +10,7 @@ let reimbursements = [];
 
 async function fetchReimbursements() {
 
-    const URL = 'http://localhost:8081/reimbursements';
+    const URL = 'http://35.225.66.206:8081/reimbursements';
 
     let res = await fetch(URL, {
         method: 'GET',

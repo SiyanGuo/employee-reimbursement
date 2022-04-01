@@ -10,7 +10,7 @@ let responseMsg
 async function populateReimbursements() {
 
     firstName.innerText = localStorage.getItem('first_name');
-    const URL = 'http://localhost:8081/reimbursements';
+    const URL = 'http://35.225.66.206:8081/reimbursements';
 
     let res = await fetch(URL, {
         method: 'GET',
@@ -118,7 +118,7 @@ document.addEventListener('click', async function(e){
         const formData = new FormData();
     
         formData.append('status', decision);
-        const URL = `http://localhost:8081/reimbursements/${reimbursementId}`;
+        const URL = `http://35.225.66.206:8081/reimbursements/${reimbursementId}`;
     
         let res = await fetch(URL, {
             method: 'PATCH',

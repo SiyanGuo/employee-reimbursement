@@ -1,6 +1,7 @@
 let loginBtn = document.querySelector('#login-btn');
 let passwordShow = document.querySelector('#togglePassword');
 let passwordInput = document.querySelector('#password');
+let loginForm = document.querySelector('#login-form');
 
 passwordShow.addEventListener('click', () => {
 
@@ -15,21 +16,18 @@ passwordShow.addEventListener('click', () => {
     }
 });
 
-loginBtn.addEventListener('click', async () => {
-    event.preventDefault();
+loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
     let usernameInput = document.querySelector('#username');
     let passwordInput = document.querySelector('#password');
-
-    const URL = 'http://35.225.66.206:8081/login';
-
-    const jsonString = JSON.stringify({
-        "username": usernameInput.value,
-        "password": passwordInput.value
-    });
+    const formData = new FormData();
+    formData.append("username", usernameInput.value);
+    formData.append("password", passwordInput.value);
+    const URL = 'http://localhost:8081/login';
 
     let res = await fetch(URL, {
         method: 'POST',
-        body: jsonString,
+        body: formData,
     });
 
     if (res.ok) {
@@ -42,9 +40,9 @@ loginBtn.addEventListener('click', async () => {
         localStorage.setItem('user_id', user.id);
 
         if (user.userRole === 'EMPLOYEE') {
-            window.location.assign('/employee-home.html')
+            window.location.assign('/employee-home.html');
         } else if (user.userRole === 'FINANCE MANAGER') {
-            window.location.assign('/manager-home.html')
+            window.location.assign('/manager-home.html');
         }
     } else {
         let errorMsg = await res.text();

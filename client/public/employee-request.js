@@ -6,15 +6,15 @@ let submitBtn = document.querySelector('#submit-btn');
 let amountEl = document.querySelector('#amount');
 let typeEl = document.querySelector('#type');
 let descriptionEl = document.querySelector('#description');
-let formEl = document.querySelector('#form');
+let formEl = document.querySelector('#request-form');
 let submitMsg = document.querySelector('#submit-message');
 
 let imageUrl;
 
 
-submitBtn.addEventListener('click', async () => {
-    event.preventDefault();
-    const URL = `http://35.225.66.206:8081/users/${localStorage.getItem('user_id')}/reimbursements`;
+formEl.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const URL = `http://localhost:8081/users/${localStorage.getItem('user_id')}/reimbursements`;
 
 
     if(isNaN(amountEl.value)){
@@ -52,7 +52,7 @@ uploadBtn.addEventListener('click', async () => {
     const formData = new FormData();
     
     formData.append('image', receiptFile.files[0]);
-    const URL = 'http://35.225.66.206:8081/reimbursements/image-upload';
+    const URL = 'http://localhost:8081/reimbursements/image-upload';
 
     let res = await fetch(URL, {
         method: 'POST',

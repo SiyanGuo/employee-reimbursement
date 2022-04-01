@@ -10,7 +10,7 @@ let responseMsg
 async function populateReimbursements() {
 
     firstName.innerText = localStorage.getItem('first_name');
-    const URL = 'http://35.225.66.206:8081/reimbursements';
+    const URL = 'http://localhost:8081/reimbursements';
 
     let res = await fetch(URL, {
         method: 'GET',
@@ -51,12 +51,13 @@ async function populateReimbursements() {
 
             let author = document.createElement('h2');
             author.classList.add('tracking-widest', 'pb-3');
-            author.innerText = `Submitted by: ${reimbursement.author.firstName} ${reimbursement.author.lastName}`
+            author.innerText = `Submitted by: ${reimbursement.author.firstName} ${reimbursement.author.lastName}`;
 
             let submitAt = document.createElement('h2');
             submitAt.classList.add('tracking-widest', 'pb-3');
-            let time = new Date(reimbursement.submittedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })
-            submitAt.innerText = `Submitted at: ${time}`;
+            let time = new Date(reimbursement.submittedAt).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+            let date = new Date(reimbursement.submittedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" });
+            submitAt.innerText = `Submitted at: ${date} ${time}`;
 
             let receipt = document.createElement('a');
             receipt.classList.add('font-semibold', 'pb-3', 'hover:text-tahiti-blue');
@@ -117,7 +118,7 @@ document.addEventListener('click', async function(e){
         const formData = new FormData();
     
         formData.append('status', decision);
-        const URL = `http://35.225.66.206:8081/reimbursements/${reimbursementId}`;
+        const URL = `http://localhost:8081/reimbursements/${reimbursementId}`;
     
         let res = await fetch(URL, {
             method: 'PATCH',
@@ -128,7 +129,7 @@ document.addEventListener('click', async function(e){
         })
 
         if(res.ok){
-            let responseMsgEl = document.querySelector(`.message-${reimbursementId}`)
+            let responseMsgEl = document.querySelector(`.message-${reimbursementId}`);
             responseMsgEl.innerText="Thank you! The request has been resolved.";
             setTimeout(function(){ location.reload(); }, 3000);
         }else {
@@ -153,7 +154,7 @@ logoutBtn.addEventListener('click', () => {
 
 window.addEventListener('load', () => {
     if (localStorage.getItem('jwt') == null) {
-        window.location = '/forbidden.html'
+        window.location = '/forbidden.html';
     }
     populateReimbursements();
 });

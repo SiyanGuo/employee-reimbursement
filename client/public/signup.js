@@ -1,6 +1,7 @@
 let signupBtn = document.querySelector('#signup-btn');
 let passwordShow = document.querySelector('#togglePassword');
 let passwordInput = document.querySelector('#password');
+let signupForm = document.querySelector('#signup-form');
 
 passwordShow.addEventListener('click', () => {
 
@@ -15,28 +16,28 @@ passwordShow.addEventListener('click', () => {
     }
 });
 
-signupBtn.addEventListener('click', async () => {
-    event.preventDefault();
+signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
     let usernameInput = document.querySelector('#username');
     let passwordInput = document.querySelector('#password');
     let firstNameInput = document.querySelector('#first-name');
     let lastNameInput = document.querySelector('#last-name');
     let emailInput = document.querySelector('#email');
     let roleInput = document.querySelector('#role');
-    const URL = 'http://35.225.66.206:8081/signup';
 
-    const jsonString = JSON.stringify({
-        "username": usernameInput.value,
-        "password": passwordInput.value,
-        "firstName": firstNameInput.value,
-        "lastName": lastNameInput.value,
-        "email": emailInput.value,
-        "userRole": roleInput.value
-    });
+    const formData = new FormData();
+    formData.append("username", usernameInput.value);
+    formData.append("password", passwordInput.value);
+    formData.append("firstName", firstNameInput.value);
+    formData.append("lastName", lastNameInput.value);
+    formData.append("email", emailInput.value);
+    formData.append("userRole", roleInput.value);
+
+    const URL = 'http://localhost:8081/signup';
 
     let res = await fetch(URL, {
         method: 'POST',
-        body: jsonString,
+        body: formData,
     });
 
     if (res.ok) {

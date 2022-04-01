@@ -20,7 +20,8 @@
 
         <aside class="sm:flex-1 lg:flex-none px-10 pt-20 sm:mt-28 sm:mx-20 ">
             <img src="./image/Reimee1.png" class="w-36 md:-ml-1 md:-mt-16" alt="logo">
-            <form action="submit" class="flex gap-7 flex-col mb-3">
+
+            <form class="flex gap-7 flex-col mb-3" id="login-form">
                 <h1 class="font-header text-4xl my-5 font-semibold">Log in to your account</h1>
                 <div class="flex flex-col mb-4">
                     <label class="block pb-1 pl-1" for="username">Username *</label>
@@ -28,10 +29,12 @@
                 </div>
 
                 <div class="flex flex-col mb-4">
-                    <div><label class="inline pb-1 pl-1" for="username">Password *</label>
+                    <div>
+                        <label class="inline pb-1 pl-1" for="username">Password *</label>
                         <i class="fa-solid fa-eye-slash inline pl-2" id="togglePassword"></i>
                     </div>
-                    <input id="password" type="password" name="password" class="p-2 rounded-md drop-shadow-sm" required/>
+                    <input id="password" type="password" name="password" class="p-2 rounded-md drop-shadow-sm"
+                        required/>
                 </div>
                 <div class="flex flex-col">
                     <span id="error-msg" class="text-purple ml-2"></span>
@@ -41,7 +44,8 @@
                 </div>
             </form>
 
-            <h1 class="text-sm w-5/6 mx-auto">Don't have an account? <a class="font-semibold hover:text-bubble-gum" href="./sign-up.html"> Sign up now!</a></h1>
+            <h1 class="text-sm w-5/6 mx-auto">Don't have an account? <a class="font-semibold hover:text-bubble-gum"
+                    href="./sign-up.html"> Sign up now!</a></h1>
         </aside>
 
         <!-- hero section -->
@@ -53,7 +57,7 @@
                 </h1>
 
             </div>
-            
+
             <img class="absolute bottom-0 bg-contain w-full" src="./image/login2.png" alt="a group of employee">
         </main>
 
@@ -65,20 +69,20 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
-      
+
         // Your web app's Firebase configuration
         const firebaseConfig = {
-          apiKey: "AIzaSyALTWgiGOGMAzz2rRcUGvVvTbbHXU_aF2k",
-          authDomain: "employee-reimbursement-6b730.firebaseapp.com",
-          projectId: "employee-reimbursement-6b730",
-          storageBucket: "employee-reimbursement-6b730.appspot.com",
-          messagingSenderId: "1059291807033",
-          appId: "1:1059291807033:web:52318775cdebbab3c7fce8"
+            apiKey: "AIzaSyALTWgiGOGMAzz2rRcUGvVvTbbHXU_aF2k",
+            authDomain: "employee-reimbursement-6b730.firebaseapp.com",
+            projectId: "employee-reimbursement-6b730",
+            storageBucket: "employee-reimbursement-6b730.appspot.com",
+            messagingSenderId: "1059291807033",
+            appId: "1:1059291807033:web:52318775cdebbab3c7fce8"
         };
-      
+
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-      </script>
+    </script>
 
 </body>
 

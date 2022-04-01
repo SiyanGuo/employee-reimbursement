@@ -10,8 +10,7 @@ let reimbursements = [];
 
 async function fetchReimbursements() {
 
-
-    const URL = 'http://35.225.66.206:8081/reimbursements';
+    const URL = 'http://localhost:8081/reimbursements';
 
     let res = await fetch(URL, {
         method: 'GET',
@@ -68,21 +67,24 @@ function populateReimbursements(reimbursements) {
 
         let author = document.createElement('h2');
         author.classList.add('tracking-widest', 'pb-3');
-        author.innerText = `Submitted by: ${reimbursement.author.firstName} ${reimbursement.author.lastName}`
+        author.innerText = `Submitted by: ${reimbursement.author.firstName} ${reimbursement.author.lastName}`;
 
         let submitAt = document.createElement('h2');
         submitAt.classList.add('tracking-widest', 'pb-3');
-        let time = new Date(reimbursement.submittedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })
-        submitAt.innerText = `Submitted at: ${time}`;
+        let date = new Date(reimbursement.submittedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" });
+        let time = new Date(reimbursement.submittedAt).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+        submitAt.innerText = `Submitted at: ${date} ${time}`;
 
         let resolvedAt = document.createElement('h2');
         resolvedAt.classList.add('tracking-widest', 'pb-3');
-        let time2 = new Date(reimbursement.resolvedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })
-        resolvedAt.innerText = `Resolved at: ${time2}`;
+        let date2 = new Date(reimbursement.resolvedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" });
+        let time2 = new Date(reimbursement.resolvedAt).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+
+        resolvedAt.innerText = `Resolved at: ${date2} ${time2}`;
 
         let resolvedBy = document.createElement('h2');
         resolvedBy.classList.add('tracking-widest', 'pb-3');
-        resolvedBy.innerText = `Resolved by: ${reimbursement.resolver.firstName} ${reimbursement.resolver.lastName}`
+        resolvedBy.innerText = `Resolved by: ${reimbursement.resolver.firstName} ${reimbursement.resolver.lastName}`;
 
         let receipt = document.createElement('a');
         receipt.classList.add('font-semibold', 'pb-3', 'hover:text-tahiti-blue');
@@ -142,7 +144,7 @@ logoutBtn.addEventListener('click', () => {
 
 window.addEventListener('load', () => {
     if (localStorage.getItem('jwt') == null) {
-        window.location = '/forbidden.html'
+        window.location = '/forbidden.html';
     }
     fetchReimbursements();
 });

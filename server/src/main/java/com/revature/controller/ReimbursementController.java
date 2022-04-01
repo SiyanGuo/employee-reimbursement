@@ -4,6 +4,7 @@ import com.revature.dto.ReimbursementDTO;
 import com.revature.model.Reimbursement;
 import com.revature.service.JWTService;
 import com.revature.service.ReimbursementService;
+import com.revature.utility.ImageUploadUtility;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
 import io.javalin.http.UnauthorizedResponse;
@@ -75,7 +76,9 @@ public class ReimbursementController implements Controller{
 
         UploadedFile file = ctx.uploadedFile("image");
         InputStream fileInputStream = file.getContent();
-        String uploadedFileUrl = this.reimbursementService.uploadToCloudStorage(fileInputStream);
+       // String uploadedFileUrl = this.reimbursementService.uploadToCloudStorage(fileInputStream);
+
+        String uploadedFileUrl =  ImageUploadUtility.uploadToCloudStorage(fileInputStream);
         ctx.header("Access-Control-Expose-Headers", "*");
         ctx.header("Image", uploadedFileUrl);
         ctx.result("Image uploaded");

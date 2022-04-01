@@ -10,7 +10,7 @@ let reimbursements = [];
 async function fetchReimbursements() {
 
     firstName.innerText = localStorage.getItem('first_name');
-    const URL = `http://35.225.66.206:8081/users/${localStorage.getItem('user_id')}/reimbursements`;
+    const URL = `http://localhost:8081/users/${localStorage.getItem('user_id')}/reimbursements`;
 
     let res = await fetch(URL, {
         method: 'GET',
@@ -22,7 +22,7 @@ async function fetchReimbursements() {
     if (res.ok) {
 
         reimbursements = await res.json();
-        filterMsg.innerText = reimbursements.length
+        filterMsg.innerText = reimbursements.length;
         populateReimbursements(reimbursements);
 
     } else {
@@ -65,8 +65,9 @@ function populateReimbursements(reimbursements) {
 
         let submitAt = document.createElement('h2');
         submitAt.classList.add('tracking-widest', 'pb-3');
-        let time = new Date(reimbursement.submittedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })
-        submitAt.innerText = `Submitted at: ${time}`;
+        let date = new Date(reimbursement.submittedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" });
+        let time = new Date(reimbursement.submittedAt).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+        submitAt.innerText = `Submitted at: ${date} ${time}`;
 
         let resolvedAt = document.createElement('h2');
         resolvedAt.classList.add('tracking-widest', 'pb-3');
@@ -82,17 +83,23 @@ function populateReimbursements(reimbursements) {
 
         if (reimbursement.status == 'APPROVED') {
             status.classList.add('text-purple');
-            let time2 = new Date(reimbursement.resolvedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })
-            resolvedAt.innerText = `Resolved at: ${time2}`
-            resolvedBy.innerText = `Resolved by: ${reimbursement.resolver.firstName} ${reimbursement.resolver.lastName}`
+           
+            let date2 = new Date(reimbursement.resolvedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" });
+            let time2 = new Date(reimbursement.resolvedAt).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+
+            resolvedAt.innerText = `Resolved at: ${date2} ${time2}`;
+            resolvedBy.innerText = `Resolved by: ${reimbursement.resolver.firstName} ${reimbursement.resolver.lastName}`;
         } else if (reimbursement.status == 'PENDING') {
             status.classList.add('text-bubble-gum');
             resolvedAt.innerText = "Resolved at: PENDING";
             resolvedBy.innerText = "Resolved by: PENDING";
         } else {
             status.classList.add('text-tahiti-blue');
-            let time3 = new Date(reimbursement.resolvedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" })
-            resolvedAt.innerText = `Resolved at: ${time3}`
+
+            let date3 = new Date(reimbursement.resolvedAt).toLocaleDateString('en-us', { weekday: "long", year: "numeric", month: "short", day: "numeric" });
+            let time3 = new Date(reimbursement.resolvedAt).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+
+            resolvedAt.innerText = `Resolved at: ${date3} ${time3}`;
             resolvedBy.innerText = `Resolved by: ${reimbursement.resolver.firstName} ${reimbursement.resolver.lastName}`;
         }
 
@@ -118,7 +125,7 @@ statusFilter.addEventListener('change', (event) => {
         populateReimbursements(reimbursements);
     } else {
         let filteredReimbursements = reimbursements.filter(e => { return e.status === event.target.value });
-        filterMsg.innerText = filteredReimbursements.length + " " + event.target.value.toLowerCase()
+        filterMsg.innerText = filteredReimbursements.length + " " + event.target.value.toLowerCase();
         populateReimbursements(filteredReimbursements);
     }
 
@@ -138,7 +145,7 @@ logoutBtn.addEventListener('click', () => {
 
 window.addEventListener('load', (event) => {
     if (localStorage.getItem('jwt') == null) {
-        window.location = '/forbidden.html'
+        window.location = '/forbidden.html';
     }
     fetchReimbursements();
 });

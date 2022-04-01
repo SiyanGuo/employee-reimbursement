@@ -879,14 +879,6 @@ select{
   flex: 1 1 0%;
 }
 
-.basis-1\/5{
-  flex-basis: 20%;
-}
-
-.basis-2\/5{
-  flex-basis: 40%;
-}
-
 .basis-1\/4{
   flex-basis: 25%;
 }
@@ -1391,10 +1383,6 @@ select{
 
   .lg\:w-72{
     width: 18rem;
-  }
-
-  .lg\:w-3\/4{
-    width: 75%;
   }
 
   .lg\:w-5\/6{

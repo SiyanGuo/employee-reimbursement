@@ -22,10 +22,14 @@ public class AuthenticationController implements Controller {
     }
 
     private Handler login = ctx -> {
+        String username = ctx.formParam("username");
+        String password = ctx.formParam("password");
 
-        LoginDTO loginInfo = ctx.bodyAsClass(LoginDTO.class);
+        LoginDTO loginInfo = new LoginDTO();
+        loginInfo.setPassword(password);
+        loginInfo.setUsername(username);
 
-        User user = userService.login(loginInfo.getUsername(), loginInfo.getPassword());
+       User user = userService.login(loginInfo.getUsername(), loginInfo.getPassword());
 
         String jwt = this.jwtService.createJWT(user);
 
@@ -37,8 +41,15 @@ public class AuthenticationController implements Controller {
     };
 
     private Handler signup = ctx -> {
+        String username = ctx.formParam("username");
+        String password = ctx.formParam("password");
+        String firstName = ctx.formParam("firstName");
+        String lastName = ctx.formParam("lastName");
+        String email = ctx.formParam("email");
+        String role = ctx.formParam("userRole");
 
-        User signedUpUser = ctx.bodyAsClass(User.class);
+        User signedUpUser = new User(-1, username, password, firstName,lastName,email, role);
+  //      User signedUpUser = ctx.bodyAsClass(User.class);
 
         User user = userService.signUp(signedUpUser);
         String jwt = this.jwtService.createJWT(user);

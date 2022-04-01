@@ -16,7 +16,6 @@ public class JWTService {
         key = Keys.hmacShaKeyFor(secret);
     }
 
-
     public String createJWT(User user) {
         String jwt = Jwts.builder()
                 .setSubject(user.getUsername())
@@ -27,7 +26,6 @@ public class JWTService {
 
         return jwt;
     }
-
 
     public Jws<Claims> parseJwt(String jwt) {
         try {

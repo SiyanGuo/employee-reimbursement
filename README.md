@@ -26,6 +26,14 @@ As a fance manager, I can view all reimbursement requests and past history for a
 * JUnit 
 * Mockito
 
+## Testing Accounts
+# Employee
+username: employee111
+password: pass123
+
+# Manager
+username: manager111
+password: word123
 
 ## Webpage screenshots
 
